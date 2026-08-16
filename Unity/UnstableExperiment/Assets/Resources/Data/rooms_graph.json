@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "description": "Граф комнат и Route Map. Переход только через Door в Overworld.",
+  "sectors": [
+    {
+      "id": "A",
+      "nameRu": "Деревня",
+      "startRoom": "a_plaza",
+      "mapItemId": "sector_map_a",
+      "mapItemNameRu": "Карта сектора A",
+      "transitionVoiceLine": "Sector B. Toxin parameters changed.",
+      "rooms": [
+        {
+          "id": "a_plaza",
+          "type": "hub",
+          "nameRu": "Площадь",
+          "sizeTiles": [18, 14],
+          "doors": [
+            { "id": "north", "labelRu": "Колодец", "targetRoom": "a_well", "mapEdgeId": "plaza-well" },
+            { "id": "east", "labelRu": "Переулок", "targetRoom": "a_alley", "mapEdgeId": "plaza-alley" },
+            { "id": "south", "labelRu": "Дом", "targetRoom": "a_home", "mapEdgeId": "plaza-home" },
+            {
+              "id": "west",
+              "labelRu": "Ворота",
+              "targetRoom": "a_gate",
+              "mapEdgeId": "plaza-gate",
+              "requiresKey": "rust_key",
+              "lockedHintRu": "Нужен ржавый ключ"
+            }
+          ],
+          "spawns": [{ "enemyId": "subject_03", "count": 1, "patrol": true }]
+        },
+        {
+          "id": "a_home",
+          "type": "key",
+          "nameRu": "Дом",
+          "sizeTiles": [12, 10],
+          "doors": [{ "id": "south", "labelRu": "На площадь", "targetRoom": "a_plaza", "mapEdgeId": "plaza-home" }],
+          "loot": [
+            { "id": "sector_map_a", "type": "map_unlock" },
+            { "id": "rust_key", "type": "key" }
+          ]
+        },
+        {
+          "id": "a_well",
+          "type": "event",
+          "nameRu": "Колодец",
+          "sizeTiles": [12, 10],
+          "doors": [{ "id": "south", "labelRu": "На площадь", "targetRoom": "a_plaza", "mapEdgeId": "plaza-well" }],
+          "eventId": "well_empty_or_ticket"
+        },
+        {
+          "id": "a_alley",
+          "type": "combat",
+          "nameRu": "Переулок",
+          "sizeTiles": [14, 10],
+          "doors": [{ "id": "west", "labelRu": "На площадь", "targetRoom": "a_plaza", "mapEdgeId": "plaza-alley" }],
+          "spawns": [{ "enemyId": "subject_03", "count": 2, "patrol": true }]
+        },
+        {
+          "id": "a_gate",
+          "type": "transition",
+          "nameRu": "Ворота",
+          "sizeTiles": [10, 8],
+          "doors": [
+            { "id": "east", "labelRu": "На площадь", "targetRoom": "a_plaza", "mapEdgeId": "plaza-gate" },
+            { "id": "west", "labelRu": "Sector B", "targetRoom": "b_hub", "mapEdgeId": "gate-sector-b", "sectorTransition": "B" }
+          ]
+        }
+      ],
+      "mapNodes": [
+        { "id": "plaza", "roomId": "a_plaza", "icon": "hub", "pos": [0, 0] },
+        { "id": "home", "roomId": "a_home", "icon": "key", "pos": [0, -1] },
+        { "id": "well", "roomId": "a_well", "icon": "event", "pos": [0, 1] },
+        { "id": "alley", "roomId": "a_alley", "icon": "combat", "pos": [1, 0] },
+        { "id": "gate", "roomId": "a_gate", "icon": "exit", "pos": [-1, 0] }
+      ],
+      "mapEdges": [
+        { "id": "plaza-home", "from": "plaza", "to": "home", "doorHintRu": "Южная дверь на площади → Дом" },
+        { "id": "plaza-well", "from": "plaza", "to": "well", "doorHintRu": "Северная дверь → Колодец" },
+        { "id": "plaza-alley", "from": "plaza", "to": "alley", "doorHintRu": "Восточная дверь → Переулок" },
+        { "id": "plaza-gate", "from": "plaza", "to": "gate", "doorHintRu": "Западная дверь → Ворота (ключ)" }
+      ]
+    },
+    {
+      "id": "B",
+      "nameRu": "Болото",
+      "startRoom": "b_hub",
+      "mapItemId": "sector_map_b",
+      "mapItemNameRu": "Карта сектора B",
+      "transitionVoiceLine": "Sector C. Cognitive interference active. Do not trust your hand.",
+      "rooms": [
+        {
+          "id": "b_hub",
+          "type": "hub",
+          "nameRu": "Болотный настил",
+          "sizeTiles": [22, 16],
+          "doors": [
+            { "id": "north", "labelRu": "Туман", "targetRoom": "b_fog", "mapEdgeId": "hub-fog" },
+            { "id": "east", "labelRu": "Главная тропа", "targetRoom": "b_main", "mapEdgeId": "hub-main" },
+            { "id": "south", "labelRu": "Костёр", "targetRoom": "b_rest", "mapEdgeId": "hub-rest" },
+            { "id": "west", "labelRu": "Боковая тропа", "targetRoom": "b_side", "mapEdgeId": "hub-side" }
+          ],
+          "spawns": [{ "enemyId": "subject_03", "count": 2, "patrol": true }]
+        },
+        {
+          "id": "b_fog",
+          "type": "event",
+          "nameRu": "Край тумана",
+          "sizeTiles": [14, 12],
+          "doors": [{ "id": "south", "labelRu": "Назад", "targetRoom": "b_hub", "mapEdgeId": "hub-fog" }],
+          "eventId": "fog_visibility"
+        },
+        {
+          "id": "b_main",
+          "type": "elite",
+          "nameRu": "Гнилое русло",
+          "sizeTiles": [18, 14],
+          "doors": [
+            { "id": "west", "labelRu": "Назад", "targetRoom": "b_hub", "mapEdgeId": "hub-main" },
+            { "id": "east", "labelRu": "Мост", "targetRoom": "b_bridge", "mapEdgeId": "main-bridge", "requiresClear": "plague" }
+          ],
+          "spawns": [{ "enemyId": "plague", "count": 1, "patrol": false, "blockId": "plague" }]
+        },
+        {
+          "id": "b_side",
+          "type": "combat",
+          "nameRu": "Заброшенная тропа",
+          "sizeTiles": [16, 12],
+          "doors": [{ "id": "east", "labelRu": "Назад", "targetRoom": "b_hub", "mapEdgeId": "hub-side" }],
+          "spawns": [{ "enemyId": "subject_12", "count": 1, "patrol": false }],
+          "loot": [{ "id": "antidote", "type": "consumable" }]
+        },
+        {
+          "id": "b_rest",
+          "type": "rest",
+          "nameRu": "Костёр",
+          "sizeTiles": [10, 10],
+          "doors": [{ "id": "north", "labelRu": "Назад", "targetRoom": "b_hub", "mapEdgeId": "hub-rest" }],
+          "restHeal": 15,
+          "restOnce": true
+        },
+        {
+          "id": "b_bridge",
+          "type": "transition",
+          "nameRu": "Мост",
+          "sizeTiles": [12, 8],
+          "doors": [
+            { "id": "west", "labelRu": "Назад", "targetRoom": "b_main", "mapEdgeId": "main-bridge" },
+            { "id": "east", "labelRu": "Sector C", "targetRoom": "c_hub", "mapEdgeId": "bridge-sector-c", "sectorTransition": "C" }
+          ]
+        }
+      ],
+      "mapNodes": [
+        { "id": "hub", "roomId": "b_hub", "icon": "hub", "pos": [0, 0] },
+        { "id": "fog", "roomId": "b_fog", "icon": "event", "pos": [0, 1] },
+        { "id": "main", "roomId": "b_main", "icon": "elite", "pos": [1, 0] },
+        { "id": "side", "roomId": "b_side", "icon": "combat", "pos": [-1, 0] },
+        { "id": "rest", "roomId": "b_rest", "icon": "rest", "pos": [0, -1] },
+        { "id": "bridge", "roomId": "b_bridge", "icon": "exit", "pos": [2, 0] }
+      ],
+      "mapEdges": [
+        { "id": "hub-fog", "from": "hub", "to": "fog", "doorHintRu": "Север → туман" },
+        { "id": "hub-main", "from": "hub", "to": "main", "doorHintRu": "Восток → Plague" },
+        { "id": "hub-side", "from": "hub", "to": "side", "doorHintRu": "Запад → Subject 12" },
+        { "id": "hub-rest", "from": "hub", "to": "rest", "doorHintRu": "Юг → костёр" },
+        { "id": "main-bridge", "from": "main", "to": "bridge", "doorHintRu": "Восток после Plague → мост" }
+      ]
+    },
+    {
+      "id": "C",
+      "nameRu": "Двор",
+      "startRoom": "c_hub",
+      "mapItemId": "sector_map_c",
+      "mapItemNameRu": "Карта сектора C",
+      "rooms": [
+        {
+          "id": "c_hub",
+          "type": "hub",
+          "nameRu": "Двор утилизации",
+          "sizeTiles": [20, 14],
+          "doors": [
+            { "id": "north", "labelRu": "Арена", "targetRoom": "c_boss", "mapEdgeId": "hub-boss" },
+            { "id": "east", "labelRu": "Склад", "targetRoom": "c_shop", "mapEdgeId": "hub-shop" },
+            { "id": "west", "labelRu": "Забор", "targetRoom": "c_fence", "mapEdgeId": "hub-fence" }
+          ],
+          "spawns": [{ "enemyId": "subject_03", "count": 1, "patrol": true }]
+        },
+        {
+          "id": "c_fence",
+          "type": "combat",
+          "nameRu": "Забор",
+          "sizeTiles": [14, 8],
+          "doors": [{ "id": "east", "labelRu": "Назад", "targetRoom": "c_hub", "mapEdgeId": "hub-fence" }],
+          "spawns": [{ "enemyId": "subject_03", "count": 1, "patrol": true }]
+        },
+        {
+          "id": "c_shop",
+          "type": "shop",
+          "nameRu": "Dispenser",
+          "sizeTiles": [10, 10],
+          "doors": [{ "id": "west", "labelRu": "Назад", "targetRoom": "c_hub", "mapEdgeId": "hub-shop" }],
+          "shopId": "dispenser_c"
+        },
+        {
+          "id": "c_boss",
+          "type": "boss",
+          "nameRu": "Арена босса",
+          "sizeTiles": [16, 14],
+          "doors": [
+            { "id": "south", "labelRu": "Назад", "targetRoom": "c_hub", "mapEdgeId": "hub-boss" },
+            {
+              "id": "north",
+              "labelRu": "Финальные ворота",
+              "targetRoom": "c_gate",
+              "mapEdgeId": "boss-gate",
+              "requiresClear": "patchwork_butcher"
+            }
+          ],
+          "spawns": [{ "enemyId": "patchwork_butcher", "count": 1, "patrol": false, "blockId": "patchwork_butcher" }]
+        },
+        {
+          "id": "c_gate",
+          "type": "transition",
+          "nameRu": "Финальные ворота",
+          "sizeTiles": [10, 8],
+          "doors": [{ "id": "south", "labelRu": "Назад", "targetRoom": "c_boss", "mapEdgeId": "boss-gate" }],
+          "endingId": "escape"
+        }
+      ],
+      "mapNodes": [
+        { "id": "hub", "roomId": "c_hub", "icon": "hub", "pos": [0, 0] },
+        { "id": "fence", "roomId": "c_fence", "icon": "combat", "pos": [-1, 0] },
+        { "id": "shop", "roomId": "c_shop", "icon": "shop", "pos": [1, 0] },
+        { "id": "boss", "roomId": "c_boss", "icon": "boss", "pos": [0, 1] },
+        { "id": "gate", "roomId": "c_gate", "icon": "exit", "pos": [0, 2] }
+      ],
+      "mapEdges": [
+        { "id": "hub-fence", "from": "hub", "to": "fence", "doorHintRu": "Запад → бой" },
+        { "id": "hub-shop", "from": "hub", "to": "shop", "doorHintRu": "Восток → Dispenser" },
+        { "id": "hub-boss", "from": "hub", "to": "boss", "doorHintRu": "Север → Butcher" },
+        { "id": "boss-gate", "from": "boss", "to": "gate", "doorHintRu": "Север после босса → ending" }
+      ]
+    }
+  ]
+}

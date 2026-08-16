@@ -1,0 +1,56 @@
+{
+  "sectors": [
+    {
+      "id": "A",
+      "nameRu": "Деревня",
+      "worldRule": null,
+      "ticketRules": [
+        {
+          "id": "tutorial_reveal",
+          "descriptionRu": "После первого боя показать иконки исходов A/B/C на билетах",
+          "type": "RevealOutcomeIcons",
+          "afterFirstCombat": true
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "nameRu": "Болото",
+      "worldRule": {
+        "id": "poison_feeds",
+        "descriptionRu": "Яд питается: +1 Poison игроку в начале каждого боя",
+        "combatStartEffects": [{ "type": "PoisonSelf", "value": 1 }]
+      },
+      "ticketRules": [
+        {
+          "id": "toxic_scratch",
+          "descriptionRu": "15% при каждом scratch: дополнительно +1 Poison себе",
+          "type": "OnScratchRoll",
+          "chance": 0.15,
+          "extraEffects": [{ "type": "PoisonSelf", "value": 1 }]
+        },
+        {
+          "id": "hide_worst_slot",
+          "descriptionRu": "Слот C скрыт на билете (иконка ?)",
+          "type": "HideOutcomeTier",
+          "tier": "C"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "nameRu": "Двор",
+      "worldRule": null,
+      "ticketRules": [
+        {
+          "id": "forged_ticket",
+          "descriptionRu": "1 билет в руке каждый бой — ложный цвет, roll по реальному типу",
+          "type": "ForgedVisual",
+          "countPerCombat": 1,
+          "visualPool": ["red", "blue", "green", "yellow"],
+          "mismatchFlashText": "SPECIMEN MISMATCH"
+        }
+      ]
+    }
+  ]
+}

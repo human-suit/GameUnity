@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "combat": {
+    "playerHp": 40,
+    "energyPerTurn": 3,
+    "handSize": 4,
+    "scratchAnimSeconds": 0.4
+  },
+  "effects": {
+    "Damage": { "target": "enemy", "stack": false },
+    "DamageSelf": { "target": "player", "stack": false },
+    "Block": { "target": "player", "stack": true },
+    "BlockNextTurn": { "target": "player", "stack": true, "delay": "next_turn" },
+    "ClearPoison": { "target": "player", "stack": false },
+    "PoisonSelf": { "target": "player", "stack": true },
+    "Bleed": { "target": "enemy", "stack": true },
+    "Heal": { "target": "player", "stack": false },
+    "DrawTicket": { "target": "roll", "stack": false },
+    "Energy": { "target": "player", "stack": false },
+    "EnergyNextTurn": { "target": "player", "stack": false, "delay": "next_turn", "valueSign": "negative" },
+    "Whiff": { "target": "none", "stack": false }
+  },
+  "tickets": [
+    {
+      "id": "red",
+      "name": "Protocol Red",
+      "nameRu": "Протокол Red",
+      "color": "#8B3A3A",
+      "cost": 1,
+      "outcomes": [
+        { "tier": "A", "weight": 50, "effects": [{ "type": "Damage", "value": 6 }] },
+        { "tier": "B", "weight": 35, "effects": [{ "type": "Damage", "value": 4 }, { "type": "Bleed", "value": 1 }] },
+        { "tier": "C", "weight": 15, "effects": [{ "type": "Whiff", "value": 0 }] }
+      ]
+    },
+    {
+      "id": "blue",
+      "name": "Protocol Blue",
+      "nameRu": "Протокол Blue",
+      "color": "#3A5A8B",
+      "cost": 1,
+      "outcomes": [
+        { "tier": "A", "weight": 55, "effects": [{ "type": "Block", "value": 5 }] },
+        { "tier": "B", "weight": 30, "effects": [{ "type": "Block", "value": 8 }] },
+        { "tier": "C", "weight": 15, "effects": [{ "type": "Block", "value": 3 }, { "type": "DrawTicket", "value": 1 }] }
+      ]
+    },
+    {
+      "id": "green",
+      "name": "Purge Slip",
+      "nameRu": "Билет очистки",
+      "color": "#3A6B4A",
+      "cost": 1,
+      "outcomes": [
+        { "tier": "A", "weight": 60, "effects": [{ "type": "ClearPoison", "value": 99 }] },
+        { "tier": "B", "weight": 25, "effects": [{ "type": "ClearPoison", "value": 99 }, { "type": "Heal", "value": 4 }] },
+        { "tier": "C", "weight": 15, "effects": [{ "type": "ClearPoison", "value": 99 }, { "type": "DamageSelf", "value": 3 }] }
+      ]
+    },
+    {
+      "id": "yellow",
+      "name": "Steady Slip",
+      "nameRu": "Билет устойчивости",
+      "color": "#8B7A3A",
+      "cost": 1,
+      "outcomes": [
+        { "tier": "A", "weight": 50, "effects": [{ "type": "BlockNextTurn", "value": 6 }] },
+        { "tier": "B", "weight": 35, "effects": [{ "type": "BlockNextTurn", "value": 3 }, { "type": "DrawTicket", "value": 1 }] },
+        { "tier": "C", "weight": 15, "effects": [{ "type": "EnergyNextTurn", "value": 1 }] }
+      ]
+    },
+    {
+      "id": "wild",
+      "name": "Wild Ticket",
+      "nameRu": "Дикий билет",
+      "color": "#6B3A8B",
+      "cost": 2,
+      "wildPools": ["red", "blue", "green"]
+    },
+    {
+      "id": "blank",
+      "name": "Blank",
+      "nameRu": "Пустой билет",
+      "color": "#4A4A4A",
+      "cost": 0,
+      "outcomes": [
+        { "tier": "A", "weight": 40, "effects": [{ "type": "Energy", "value": 1 }] },
+        { "tier": "B", "weight": 40, "effects": [{ "type": "Whiff", "value": 0 }] },
+        { "tier": "C", "weight": 20, "effects": [{ "type": "DamageSelf", "value": 5 }] }
+      ]
+    }
+  ],
+  "starterRoll": [
+    "red", "red", "red",
+    "blue", "blue", "blue",
+    "green", "green",
+    "yellow", "yellow",
+    "wild",
+    "blank"
+  ],
+  "exhaustedRollFallback": "blank"
+}

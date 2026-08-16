@@ -54,7 +54,7 @@ Exit-door сектора → новый сектор + новые правила
 | 8 персонажей (sprite sheets) | ✅ | `герои/`, `враги/` |
 | Окружение 3 секторов | ✅ | `окружение/sector-*/` |
 | Комната + Route Map (Sector A) | ✅ | `игра/rooms/sector-a/`, `игра/ui/` |
-| Unity-проект | ⏳ | ещё не создан |
+| Unity demo | ✅ scaffold | `Unity/UnstableExperiment/` |
 
 **Галерея ассетов:** открыть [`demo/index.html`](demo/index.html) в браузере.
 
@@ -75,7 +75,18 @@ cd GameUnity
 2. **[`КОНЦЕПЦИЯ-ИГРЫ.md`](КОНЦЕПЦИЯ-ИГРЫ.md)** — комнаты, двери, Route Map, ТЗ для Unity  
 3. **[`GDD-кратко.md`](GDD-кратко.md)** — pitch, враги, scope демки  
 
-### 3. Разделение работы
+### 3. Unity (playable demo)
+
+```bash
+# Открыть в Unity Hub:
+Unity/UnstableExperiment
+```
+
+Menu: **Unstable Experiment → Create Demo Scene** → Play.
+
+Подробно: [`Unity/UnstableExperiment/README.md`](Unity/UnstableExperiment/README.md)
+
+### 4. Разделение работы
 
 | Dev — Code (Unity) | Dev — Art / Level |
 |--------------------|-------------------|
@@ -186,11 +197,10 @@ git pull origin main
 - [x] Game design + room graph + combat data  
 - [x] Character & environment art (v5)  
 - [x] Room `a_plaza` + Route Map mockup (Sector A)  
-- [ ] Unity project scaffold  
-- [ ] Room loader + doors + keys  
-- [ ] Lottery combat overlay  
-- [ ] Route Map UI  
-- [ ] Остальные комнаты A → B → C  
+- [x] **Unity demo scaffold** → [`Unity/UnstableExperiment/`](Unity/UnstableExperiment/)  
+- [ ] Tilemap art import (replace procedural placeholders)  
+- [ ] Route Map UI polish  
+- [ ] Full Sector B/C playable  
 - [ ] Boss + endings  
 
 ---
