@@ -13,8 +13,13 @@ namespace UnstableExperiment.UI
         private GUIStyle _box;
         private GUIStyle _label;
         private bool _stylesReady;
+        private Texture2D _routeMapTex;
 
-        public void Initialize(RoomManager rooms) => _rooms = rooms;
+        public void Initialize(RoomManager rooms)
+        {
+            _rooms = rooms;
+            _routeMapTex = ArtLibrary.RouteMap;
+        }
 
         private void Update()
         {
@@ -46,6 +51,14 @@ namespace UnstableExperiment.UI
             float w = 520;
             float h = Screen.height - 40;
             GUILayout.BeginArea(new Rect(Screen.width - w - 10, 10, w, h), _box);
+
+            if (_routeMapTex != null)
+            {
+                float imgW = w - 20;
+                float aspect = (float)_routeMapTex.height / _routeMapTex.width;
+                GUI.DrawTexture(new Rect(Screen.width - w, 10, imgW, imgW * aspect), _routeMapTex, ScaleMode.ScaleToFit);
+                GUILayout.Space(imgW * aspect + 8);
+            }
 
             GUILayout.Label($"FACILITY ROUTE — Sector {sector.id} {sector.nameRu}", _label);
             GUILayout.Label("(карта не телепортирует — иди к двери на краю комнаты)", _label);

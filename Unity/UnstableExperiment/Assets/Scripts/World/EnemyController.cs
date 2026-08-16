@@ -26,8 +26,9 @@ namespace UnstableExperiment.World
             go.transform.SetParent(root);
             go.transform.position = pos;
             var sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = SpriteFactory.Enemy;
+            sr.sprite = ArtLibrary.Enemy;
             sr.sortingOrder = 8;
+            FitCharacterScale(go.transform, 0.85f);
             var col = go.AddComponent<CircleCollider2D>();
             col.radius = 0.35f;
             col.isTrigger = true;

@@ -75,16 +75,18 @@ cd GameUnity
 2. **[`КОНЦЕПЦИЯ-ИГРЫ.md`](КОНЦЕПЦИЯ-ИГРЫ.md)** — комнаты, двери, Route Map, ТЗ для Unity  
 3. **[`GDD-кратко.md`](GDD-кратко.md)** — pitch, враги, scope демки  
 
-### 3. Unity (playable demo)
+## Unity — игра здесь
 
-```bash
-# Открыть в Unity Hub:
-Unity/UnstableExperiment
+**Открывай в Unity Hub и Cursor:**
+
+```
+Unity/UnstableExperiment/
 ```
 
-Menu: **Unstable Experiment → Create Demo Scene** → Play.
+→ [`Unity/UnstableExperiment/README.md`](Unity/UnstableExperiment/README.md)  
+→ Play: `Assets/Scenes/Main.unity`
 
-Подробно: [`Unity/UnstableExperiment/README.md`](Unity/UnstableExperiment/README.md)
+Design-доки и арт-исходники — корень репо. **Код игры — только в Unity-папке.**
 
 ### 4. Разделение работы
 

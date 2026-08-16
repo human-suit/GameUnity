@@ -13,8 +13,8 @@ namespace UnstableExperiment.World
         private static Sprite _door;
         private static Sprite _loot;
 
-        public static Sprite Player => _player ??= CreateCircle(new Color(0.55f, 0.65f, 0.75f), 16);
-        public static Sprite Enemy => _enemy ??= CreateCircle(new Color(0.75f, 0.35f, 0.35f), 14);
+        public static Sprite FallbackPlayer => _player ??= CreateCircle(new Color(0.55f, 0.65f, 0.75f), 16);
+        public static Sprite FallbackEnemy => _enemy ??= CreateCircle(new Color(0.75f, 0.35f, 0.35f), 14);
         public static Sprite Floor => _floor ??= CreateSolid(new Color(0.28f, 0.32f, 0.26f));
         public static Sprite Wall => _wall ??= CreateSolid(new Color(0.12f, 0.12f, 0.14f));
         public static Sprite Door => _door ??= CreateSolid(new Color(0.55f, 0.42f, 0.22f));
@@ -55,7 +55,14 @@ namespace UnstableExperiment.World
         {
             int w = room.sizeTiles[0];
             int h = room.sizeTiles[1];
-            var origin = new Vector2(-w * tileSize * 0.5f, -h * tileSize * 0.5f);
+            float roomW = w * tileSize;
+            float roomH = h * tileSize;
+
+            var roomBg = ArtLibrary.GetRoomBackground(room.id);
+            if (roomBg != null)
+                CreateRoomBackground(root, roomBg, roomW, roomH);
+
+            var origin = new Vector2(-roomW * 0.5f, -roomH * 0.5f);
 
             for (int y = 0; y < h; y++)
             for (int x = 0; x < w; x++)
@@ -65,9 +72,11 @@ namespace UnstableExperiment.World
                 var pos = origin + new Vector2((x + 0.5f) * tileSize, (y + 0.5f) * tileSize);
 
                 if (edge && !isDoorCell)
-                    CreateTile(root, "Wall", pos, SpriteFactory.Wall, true);
-                else
+                    CreateTile(root, "Wall", pos, SpriteFactory.Wall, true, roomBg == null ? 1f : 0.35f);
+                else if (roomBg == null)
                     CreateTile(root, "Floor", pos, SpriteFactory.Floor, edge && !isDoorCell);
+                else if (edge && !isDoorCell)
+                    CreateInvisibleWall(root, pos);
             }
 
             CreateLabel(root, room.nameRu, new Vector3(0, h * tileSize * 0.5f + 0.6f, 0));
@@ -83,13 +92,36 @@ namespace UnstableExperiment.World
             }
         }
 
-        private static void CreateTile(Transform root, string name, Vector2 pos, Sprite sprite, bool solid)
+        private static void CreateRoomBackground(Transform root, Sprite bg, float roomW, float roomH)
+        {
+            var go = new GameObject("RoomBackground");
+            go.transform.SetParent(root);
+            go.transform.localPosition = Vector3.zero;
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = bg;
+            sr.sortingOrder = -10;
+            float sx = roomW / sr.bounds.size.x;
+            float sy = roomH / sr.bounds.size.y;
+            go.transform.localScale = new Vector3(sx, sy, 1f);
+        }
+
+        private static void CreateInvisibleWall(Transform root, Vector2 pos)
+        {
+            var go = new GameObject("WallCollider");
+            go.transform.SetParent(root);
+            go.transform.position = pos;
+            var col = go.AddComponent<BoxCollider2D>();
+            col.size = Vector2.one * RoomManager.TileSize;
+        }
+
+        private static void CreateTile(Transform root, string name, Vector2 pos, Sprite sprite, bool solid, float alpha = 1f)
         {
             var go = new GameObject(name);
             go.transform.SetParent(root);
             go.transform.position = pos;
             var sr = go.AddComponent<SpriteRenderer>();
             sr.sprite = sprite;
+            sr.color = new Color(1, 1, 1, alpha);
             sr.drawMode = SpriteDrawMode.Simple;
             go.transform.localScale = Vector3.one * RoomManager.TileSize;
             if (solid)
@@ -98,6 +130,9 @@ namespace UnstableExperiment.World
                 col.size = Vector2.one;
             }
         }
+
+        private static void CreateTile(Transform root, string name, Vector2 pos, Sprite sprite, bool solid)
+            => CreateTile(root, name, pos, sprite, solid, 1f);
 
         private static void CreateLabel(Transform root, string text, Vector3 pos)
         {

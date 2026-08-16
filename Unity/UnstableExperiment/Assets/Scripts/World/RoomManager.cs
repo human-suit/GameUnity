@@ -85,8 +85,9 @@ namespace UnstableExperiment.World
             var go = new GameObject("Subject07");
             go.transform.SetParent(_roomRoot);
             var sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = SpriteFactory.Player;
+            sr.sprite = ArtLibrary.Player;
             sr.sortingOrder = 10;
+            FitCharacterScale(go.transform, 0.9f);
 
             var rb = go.AddComponent<Rigidbody2D>();
             rb.gravityScale = 0f;
@@ -99,6 +100,29 @@ namespace UnstableExperiment.World
             go.AddComponent<PlayerMovement>();
             _player = go.transform;
             _player.position = ProceduralRoomBuilder.GetSpawnPosition(room, entryDoorId, TileSize);
+            SetupCamera(_player);
+        }
+
+        private void SetupCamera(Transform target)
+        {
+            var cam = Camera.main;
+            if (cam == null) return;
+            cam.orthographic = true;
+            cam.orthographicSize = 8f;
+            cam.backgroundColor = new Color(0.05f, 0.05f, 0.06f);
+            var follow = cam.GetComponent<CameraFollow>();
+            if (follow == null) follow = cam.gameObject.AddComponent<CameraFollow>();
+            follow.Target = target;
+        }
+
+        public static void FitCharacterScale(Transform t, float targetHeight)
+        {
+            var sr = t.GetComponent<SpriteRenderer>();
+            if (sr == null || sr.sprite == null) return;
+            float h = sr.sprite.bounds.size.y;
+            if (h <= 0.01f) return;
+            float s = targetHeight / h;
+            t.localScale = new Vector3(s, s, 1f);
         }
 
         private void SpawnEnemies(RoomDef room)

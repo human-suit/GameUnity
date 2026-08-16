@@ -1,62 +1,60 @@
 # Unstable Experiment — Unity Demo
 
-Playable demo: **Sector A** (5 rooms), WASD movement, doors, lottery combat, Route Map (Tab).
+> **Это и есть игра.** Открывай эту папку в Unity Hub и в Cursor.
 
-## Requirements
+## Play за 30 секунд
 
-- **Unity 2022.3 LTS** (or newer 2022.3.x)
-- Open folder: `Unity/UnstableExperiment`
+1. **Unity Hub** → Open → выбери **`Unity/UnstableExperiment`**
+2. Unity 2022.3 LTS импортирует проект (первый раз ~1–2 мин)
+3. Открой **`Assets/Scenes/Main.unity`** (создаётся автоматически при первом открытии)
+4. **Play ▶**
 
-## First open
+## Cursor / AI
 
-1. Unity Hub → **Add** → select `Unity/UnstableExperiment`
-2. Menu: **Unstable Experiment → Create Demo Scene** (creates `Assets/Scenes/Main.unity`)
-3. Open `Main` scene → **Play**
+Открывай в Cursor **эту же папку** (`Unity/UnstableExperiment`):
 
-Or: create empty scene, add empty GameObject, attach `GameBootstrap`, Play.
+| Что править | Где |
+|-------------|-----|
+| Геймплей | `Assets/Scripts/` |
+| Комнаты, двери | `Assets/Resources/Data/rooms_graph.json` |
+| Бой | `Assets/Resources/Data/tickets.json` |
+| Арт комнаты | `Assets/Resources/Art/Rooms/{room_id}_room.png` |
 
-## Controls
+После правок → вернись в Unity → Play (скрипты перекомпилируются сами).
 
-| Key | Action |
-|-----|--------|
-| WASD | Move |
-| E | Door / loot |
-| Tab | Route Map (after finding map in Home) |
-| Combat | Click ticket → REDEEM, End Turn |
+См. также **`AGENTS.md`** в этой папке.
 
-## Demo path (Sector A)
+## Управление
 
-1. **Plaza** — walk, optional fight Subject 03  
-2. **Home** (south door) — pick up **Rust Key** + **Sector Map**  
-3. **Gate** (west door) — needs key → Sector B hub (stub message)  
-4. Alley / Well — optional  
+| | |
+|--|--|
+| WASD | ходьба |
+| E | дверь / лут |
+| Tab | Route Map (после карты в Доме) |
+| REDEEM / End Turn | бой |
 
-## Data source
+## Demo-путь Sector A
 
-Runtime loads from `Assets/Resources/Data/`:
+Площадь → **Дом** (юг) → ключ + карта → **Tab** → **Ворота** (запад) → Sector B
 
-- `rooms_graph.json`
-- `tickets.json`
-- `unstable_rules.json`
+## Меню Unity
 
-Design docs: repo root `КОНЦЕПЦИЯ-ИГРЫ.md`
+- **Unstable Experiment → Create Demo Scene** — пересоздать Main
+- **Unstable Experiment → Reimport Art** — обновить спрайты
 
-## Art
-
-Placeholder procedural tiles. Drop sprites into `Assets/Art/` and extend `ProceduralRoomBuilder` to use them.
-
-Source art: `../../окружение/`, `../../герои/`, `../../demo/`
-
-## Structure
+## Структура
 
 ```
 Assets/
-  Scripts/
-    Core/       GameBootstrap, GameState, DataModels
-    World/      RoomManager, ProceduralRoomBuilder, Door, Enemy
-    Combat/     CombatManager, TicketCombat
-    UI/         GameHUD, RouteMapUI
-  Resources/Data/
-  Scenes/
-  Editor/       DemoSceneCreator
+  Scenes/Main.unity
+  Scripts/          ← код
+  Resources/
+    Data/           ← JSON
+    Art/            ← PNG
+  Docs/             ← GDD копия
+  Editor/           ← auto-setup
 ```
+
+## Дизайн-доки (полная версия)
+
+В корне git-репо: `НАЧАЛО-РАБОТЫ.md`, `КОНЦЕПЦИЯ-ИГРЫ.md`
