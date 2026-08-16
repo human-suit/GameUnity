@@ -72,11 +72,14 @@ namespace UnstableExperiment.World
                 var pos = origin + new Vector2((x + 0.5f) * tileSize, (y + 0.5f) * tileSize);
 
                 if (edge && !isDoorCell)
-                    CreateTile(root, "Wall", pos, SpriteFactory.Wall, true, roomBg == null ? 1f : 0.35f);
+                {
+                    if (roomBg == null)
+                        CreateTile(root, "Wall", pos, SpriteFactory.Wall, true);
+                    else
+                        CreateInvisibleWall(root, pos);
+                }
                 else if (roomBg == null)
                     CreateTile(root, "Floor", pos, SpriteFactory.Floor, edge && !isDoorCell);
-                else if (edge && !isDoorCell)
-                    CreateInvisibleWall(root, pos);
             }
 
             CreateLabel(root, room.nameRu, new Vector3(0, h * tileSize * 0.5f + 0.6f, 0));
