@@ -109,6 +109,7 @@ namespace UnstableExperiment.World
             if (cam == null) return;
             cam.orthographic = true;
             cam.orthographicSize = 8f;
+            cam.clearFlags = CameraClearFlags.SolidColor;
             cam.backgroundColor = new Color(0.05f, 0.05f, 0.06f);
             var follow = cam.GetComponent<CameraFollow>();
             if (follow == null) follow = cam.gameObject.AddComponent<CameraFollow>();

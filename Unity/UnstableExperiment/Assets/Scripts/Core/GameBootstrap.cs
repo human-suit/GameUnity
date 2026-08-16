@@ -37,8 +37,18 @@ namespace UnstableExperiment.Core
 
         private void Awake()
         {
-            GameState.Reset();
-            GameDatabase.LoadAll();
+            ConfigureMainCamera();
+
+            try
+            {
+                GameState.Reset();
+                GameDatabase.LoadAll();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[UnstableExperiment] Failed to load data: {ex.Message}");
+                return;
+            }
 
             _rooms = gameObject.AddComponent<RoomManager>();
             _combat = gameObject.AddComponent<CombatManager>();
@@ -53,8 +63,20 @@ namespace UnstableExperiment.Core
 
         private void Start()
         {
-            if (autoStart)
-                _rooms.EnterRoom(GameState.Instance.CurrentRoomId, null);
+            if (!autoStart || _rooms == null) return;
+            _rooms.EnterRoom(GameState.Instance.CurrentRoomId, null);
+            Debug.Log("[UnstableExperiment] Sector A started — a_plaza");
+        }
+
+        private static void ConfigureMainCamera()
+        {
+            var cam = Camera.main;
+            if (cam == null) return;
+            cam.orthographic = true;
+            cam.orthographicSize = 8f;
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = new Color(0.05f, 0.05f, 0.06f);
+            cam.transform.position = new Vector3(0f, 0f, -10f);
         }
     }
 }
