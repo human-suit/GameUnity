@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnstableExperiment.Combat;
+using UnstableExperiment.Data;
 using UnstableExperiment.UI;
 using UnstableExperiment.World;
 
