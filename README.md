@@ -1,6 +1,7 @@
-# Unstable Experiment — концепции и ассеты
+# GameUnity — Unstable Experiment
 
-> **Старт для команды:** [`НАЧАЛО-РАБОТЫ.md`](НАЧАЛО-РАБОТЫ.md) — весь концепт, промпты, разделение на 2 dev.
+> Репозиторий: [human-suit/GameUnity](https://github.com/human-suit/GameUnity)  
+> **Старт для команды:** [`НАЧАЛО-РАБОТЫ.md`](НАЧАЛО-РАБОТЫ.md)
 
 ## Unified v5 (актуально)
 
