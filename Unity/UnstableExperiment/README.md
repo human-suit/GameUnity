@@ -1,60 +1,32 @@
-# Unstable Experiment — Unity Demo
+# Unstable Experiment — Unity
 
-> **Это и есть игра.** Открывай эту папку в Unity Hub и в Cursor.
+> Открывай **эту папку** в Unity Hub: `Unity/UnstableExperiment`
 
-## Play за 30 секунд
+## С чего начать (3 минуты)
 
-1. **Unity Hub** → Open → выбери **`Unity/UnstableExperiment`**
-2. Unity 2022.3 LTS импортирует проект (первый раз ~1–2 мин)
-3. Открой **`Assets/Scenes/Main.unity`** (создаётся автоматически при первом открытии)
-4. **Play ▶**
+1. Unity Hub → Open → `Unity/UnstableExperiment`
+2. Открой **`Assets/Scenes/Main.unity`**
+3. Меню **`Unstable Experiment`** → **`Шаг 1 — Площадь и персонаж`**
+4. **Ctrl+S** → **Play ▶** → ходи **WASD** (вкладка **Game**)
 
-## Cursor / AI
+Подробно: **`Assets/Docs/ШАГИ.md`**
 
-Открывай в Cursor **эту же папку** (`Unity/UnstableExperiment`):
-
-| Что править | Где |
-|-------------|-----|
-| Геймплей | `Assets/Scripts/` |
-| Комнаты, двери | `Assets/Resources/Data/rooms_graph.json` |
-| Бой | `Assets/Resources/Data/tickets.json` |
-| Арт комнаты | `Assets/Resources/Art/Rooms/{room_id}_room.png` |
-
-После правок → вернись в Unity → Play (скрипты перекомпилируются сами).
-
-См. также **`AGENTS.md`** в этой папке.
-
-## Управление
-
-| | |
-|--|--|
-| WASD | ходьба |
-| E | дверь / лут |
-| Tab | Route Map (после карты в Доме) |
-| REDEEM / End Turn | бой |
-
-## Demo-путь Sector A
-
-Площадь → **Дом** (юг) → ключ + карта → **Tab** → **Ворота** (запад) → Sector B
-
-## Меню Unity
-
-- **Unstable Experiment → Create Demo Scene** — пересоздать Main
-- **Unstable Experiment → Reimport Art** — обновить спрайты
-
-## Структура
+## Что в проекте
 
 ```
 Assets/
   Scenes/Main.unity
-  Scripts/          ← код
-  Resources/
-    Data/           ← JSON
-    Art/            ← PNG
-  Docs/             ← GDD копия
-  Editor/           ← auto-setup
+  Scripts/PlayerMove.cs, CameraFollow2D.cs   ← простые скрипты шага 1
+  Editor/SetupStep1.cs                       ← меню сборки сцены
+  Resources/Art/                             ← спрайты
+  Resources/Data/                            ← JSON (справочно)
+  Docs/ШАГИ.md                               ← пошаговая инструкция
 ```
 
-## Дизайн-доки (полная версия)
+## Дальше
 
-В корне git-репо: `НАЧАЛО-РАБОТЫ.md`, `КОНЦЕПЦИЯ-ИГРЫ.md`
+Шаг 2 — твои анимации (Animator)  
+Шаг 3 — туман видимости  
+Шаг 4 — двери и комнаты
+
+Пиши на каком шаге — поможем в Unity.

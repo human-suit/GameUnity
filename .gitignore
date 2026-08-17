@@ -39,3 +39,7 @@ credentials.json
 
 # Large temp from AI tools (keep project assets only)
 **/node_modules/
+
+# Accidental Windows duplicates
+**/* 1.png
+**/* 1.meta

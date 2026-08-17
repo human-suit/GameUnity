@@ -84,6 +84,7 @@ Unity/UnstableExperiment/
 ```
 
 → [`Unity/UnstableExperiment/README.md`](Unity/UnstableExperiment/README.md)  
+→ **Вдвоём:** [`Unity/UnstableExperiment/РАБОТА-В-ДВОЁМ.md`](Unity/UnstableExperiment/РАБОТА-В-ДВОЁМ.md)  
 → Play: `Assets/Scenes/Main.unity`
 
 Design-доки и арт-исходники — корень репо. **Код игры — только в Unity-папке.**
