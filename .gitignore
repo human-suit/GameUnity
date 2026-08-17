@@ -9,7 +9,7 @@ Desktop.ini
 *.swp
 *~
 
-# Unity (когда появится)
+# Unity
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -17,6 +17,8 @@ Desktop.ini
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
 *.csproj
 *.unityproj
 *.sln
@@ -30,6 +32,13 @@ Desktop.ini
 *.mdb
 *.opendb
 *.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Unity auto-generated (keep Assets/, ProjectSettings/, Packages/ in Git!)
+/[Aa]ssets/AssetStoreTools*
+/[Aa]ssets/Plugins/Editor/JetBrains*
 
 # Secrets
 .env

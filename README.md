@@ -182,16 +182,30 @@ Design-доки и арт-исходники — корень репо. **Код
 
 ---
 
-## Git workflow
+## Git workflow (2 dev, game jam)
 
-```bash
-git checkout -b feature/unity-room-loader   # код
-git checkout -b art/room-a-home             # арт
-# merge → main через PR или локально
-git pull origin main
+```
+main   ← стабильная игра (merge сюда)
+dev1   ← Dev 1: Overworld + Combat
+dev2   ← Dev 2: Art + UI
 ```
 
-`.gitignore` уже настроен под Unity (`Library/`, `Temp/`, …).
+**Не коммитьте в main напрямую.** Работайте в своей ветке → Pull Request → main.
+
+Подробно: [`Unity/UnstableExperiment/РАБОТА-В-ДВОЁМ.md`](Unity/UnstableExperiment/РАБОТА-В-ДВОЁМ.md)
+
+```bash
+git clone https://github.com/human-suit/GameUnity.git
+cd GameUnity
+git checkout dev1          # или dev2
+git pull origin dev1
+# ... работа ...
+git commit -m "Add door trigger"
+git push origin dev1
+```
+
+Unity: **Visible Meta Files** + **Force Text** уже в ProjectSettings.  
+`.gitignore` исключает `Library/`, `Temp/`, `UserSettings/`.
 
 ---
 
