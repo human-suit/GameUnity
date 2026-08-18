@@ -1,0 +1,554 @@
+fileFormatVersion: 2
+guid: f4dd59b9a826acd4cbd364c998e219aa
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 798
+        width: 248
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac98a270340a0d4fa5ffbf91ccebe3f
+      internalID: 1318946112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 807
+        width: 227
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f60ce304ccfd57b42a5622d9136b92dc
+      internalID: 1410386876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 805
+        width: 221
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e01f0f6eba0eb41982cc36c1705ae3
+      internalID: 164632120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 804
+        width: 216
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d27ed53f1d34a9f4e9ebe3b14701aa0f
+      internalID: 214014746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 581
+        width: 162
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b01bf9a92cb80648bf2d02fb3113d90
+      internalID: 1410483322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 585
+        width: 166
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6876c642107b268438b32af9dd6bbfa9
+      internalID: -1545403043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 590
+        width: 263
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665c3f951bf034b45b946ce0b3c65954
+      internalID: 541299157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 588
+        width: 183
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c74ac829d089c55459361dc7e882d879
+      internalID: 38578166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 588
+        width: 250
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42d65834bc3dca74bb90beb81bb161f0
+      internalID: -157597383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 46
+        width: 261
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c155d18c7a69004291240474e797282
+      internalID: 1193627194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 400
+        width: 216
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0fda77b12cff0842879b1a55ca6ae29
+      internalID: -2010784729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 407
+        width: 112
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92faaf4ffd1471d4a88d3a24e452e71e
+      internalID: -1861404186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 410
+        width: 301
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f005e0c13dcdb7d4c9df95b255ca73c3
+      internalID: 434958089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 237
+        width: 347
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ddc60885aeac0247b488f8134f1019f
+      internalID: -842431407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 227
+        width: 336
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b9c6664421b92b4ca6f8144fb3abaf3
+      internalID: -2116694102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 236
+        width: 224
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fc4b200302de8b48a34eb13a2d3b8c2
+      internalID: 857798425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 409
+        width: 144
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e95576a4ff4144dad0b5e900ce5669
+      internalID: -1244334835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 43
+        width: 264
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c1372b412a86054ea6d5bb81dd739a5
+      internalID: -1615868148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 46
+        width: 184
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a264f863110f610478086063e1175a34
+      internalID: 1974601806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: topdown_sector_a_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 580
+        width: 142
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c90318cf5d95a734abcf9e389fa968fe
+      internalID: 659762986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 057ceccf036978d459749bb129df85f3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      topdown_sector_a_sheet_0: 1318946112
+      topdown_sector_a_sheet_1: 1410386876
+      topdown_sector_a_sheet_10: -2010784729
+      topdown_sector_a_sheet_11: -1861404186
+      topdown_sector_a_sheet_12: 434958089
+      topdown_sector_a_sheet_13: -842431407
+      topdown_sector_a_sheet_14: -2116694102
+      topdown_sector_a_sheet_15: 857798425
+      topdown_sector_a_sheet_16: -1244334835
+      topdown_sector_a_sheet_17: -1615868148
+      topdown_sector_a_sheet_18: 1974601806
+      topdown_sector_a_sheet_19: 659762986
+      topdown_sector_a_sheet_2: 164632120
+      topdown_sector_a_sheet_3: 214014746
+      topdown_sector_a_sheet_4: 1410483322
+      topdown_sector_a_sheet_5: -1545403043
+      topdown_sector_a_sheet_6: 541299157
+      topdown_sector_a_sheet_7: 38578166
+      topdown_sector_a_sheet_8: -157597383
+      topdown_sector_a_sheet_9: 1193627194
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

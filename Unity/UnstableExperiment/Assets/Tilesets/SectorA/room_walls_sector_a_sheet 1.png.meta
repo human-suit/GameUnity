@@ -1,0 +1,1077 @@
+fileFormatVersion: 2
+guid: 9dddc5b1b2a8cfa42a8bed6ce223a87d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 953
+        width: 223
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc363e590fdb588449c6dc3cae0c79f9
+      internalID: -697603358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_1
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 962
+        width: 229
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e253ea8e3c0884b91b40accb797301
+      internalID: -768323338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_2
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 964
+        width: 198
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91534e9e4eaa80c4bb0bf5322d2cfd3b
+      internalID: -1250609588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_3
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 965
+        width: 211
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 103.5, y: 65}
+        - {x: 92.5, y: 91}
+        - {x: 76.5, y: 91}
+        - {x: 68.5, y: 91}
+        - {x: 62.5, y: 91}
+        - {x: 49.5, y: 90}
+        - {x: 32.5, y: 91}
+        - {x: 21.5, y: 91}
+        - {x: 9.5, y: 90}
+        - {x: -3.5, y: 90}
+        - {x: -22.5, y: 91}
+        - {x: -37.5, y: 91}
+        - {x: -50.5, y: 90}
+        - {x: -62.5, y: 90}
+        - {x: -78.5, y: 91}
+        - {x: -90.5, y: 91}
+        - {x: -104.5, y: 66}
+        - {x: -105.5, y: 58}
+        - {x: -104.5, y: -50}
+        - {x: -102.5, y: -91}
+        - {x: 98.5, y: -91}
+        - {x: 104.5, y: -84}
+        - {x: 105.5, y: -65}
+        - {x: 105.5, y: 55}
+      tessellationDetail: 0.12
+      bones: []
+      spriteID: 87dcc0f10430a6a4cbaee86e524c0a49
+      internalID: 422923729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_4
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 966
+        width: 190
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bfcfafe72a0bef47bc6b9ba7ec22523
+      internalID: 537155822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_5
+      rect:
+        serializedVersion: 2
+        x: 1251
+        y: 964
+        width: 193
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8848061509c178c449b17b3a8b18d6b7
+      internalID: 1781826980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_6
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 964
+        width: 190
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd67e3487cebf6f418e9103d77f93e7d
+      internalID: -2092617930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_7
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 964
+        width: 173
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a98ed379be0dc9419784991baf4c8e2
+      internalID: 1929687577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_8
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 665
+        width: 127
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f373b7b576bf9c41ae60a4c1d41b50a
+      internalID: -1086966108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_9
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 665
+        width: 187
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 556255e738440964cb8fcbc431cdc15b
+      internalID: -250196851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_10
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 663
+        width: 184
+        height: 211
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0ac76e5aac04b4d9097c7593ce0e30
+      internalID: 2093792637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_11
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 336
+        width: 134
+        height: 279
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee4c7fde744fc8e419e301c86ba4cf2c
+      internalID: -1995150294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_12
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 659
+        width: 123
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ff7abdf7cc7bd4e887ae81bb113edb
+      internalID: 2098935976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_13
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 659
+        width: 210
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 94, y: -101.5}
+        - {x: 98, y: -101.5}
+        - {x: 100, y: -99.5}
+        - {x: 100, y: -95.5}
+        - {x: 105, y: -90.5}
+        - {x: 105, y: -85.5}
+        - {x: 104, y: -84.5}
+        - {x: 104, y: -79.5}
+        - {x: 102, y: -76.5}
+        - {x: 100, y: -72.5}
+        - {x: 102, y: -71.5}
+        - {x: 104, y: -66.5}
+        - {x: 104, y: -63.5}
+        - {x: 100, y: -59.5}
+        - {x: 100, y: -38.5}
+        - {x: 97, y: -34.5}
+        - {x: 96, y: -33.5}
+        - {x: 96, y: 73.5}
+        - {x: 93, y: 77.5}
+        - {x: 92, y: 80.5}
+        - {x: 90, y: 81.5}
+        - {x: 90, y: 83.5}
+        - {x: 88, y: 85.5}
+        - {x: 88, y: 87.5}
+        - {x: 86, y: 89.5}
+        - {x: 86, y: 91.5}
+        - {x: 84, y: 93.5}
+        - {x: 84, y: 95.5}
+        - {x: 82, y: 97.5}
+        - {x: 82, y: 101.5}
+        - {x: 79, y: 104.5}
+        - {x: 75, y: 104.5}
+        - {x: 70, y: 100.5}
+        - {x: 69, y: 97.5}
+        - {x: 66, y: 93.5}
+        - {x: 66, y: 89.5}
+        - {x: 64, y: 87.5}
+        - {x: 64, y: 85.5}
+        - {x: 62, y: 84.5}
+        - {x: 61, y: 81.5}
+        - {x: 58, y: 77.5}
+        - {x: 58, y: 44.5}
+        - {x: 46, y: 44.5}
+        - {x: 46, y: 69.5}
+        - {x: 44, y: 71.5}
+        - {x: 44, y: 75.5}
+        - {x: 42, y: 77.5}
+        - {x: 42, y: 79.5}
+        - {x: 40, y: 81.5}
+        - {x: 40, y: 83.5}
+        - {x: 37, y: 87.5}
+        - {x: 36, y: 88.5}
+        - {x: 36, y: 91.5}
+        - {x: 34, y: 93.5}
+        - {x: 34, y: 95.5}
+        - {x: 32, y: 97.5}
+        - {x: 32, y: 99.5}
+        - {x: 27, y: 104.5}
+        - {x: 23, y: 104.5}
+        - {x: 20, y: 101.5}
+        - {x: 20, y: 99.5}
+        - {x: 18, y: 97.5}
+        - {x: 18, y: 95.5}
+        - {x: 16, y: 93.5}
+        - {x: 16, y: 91.5}
+        - {x: 14, y: 89.5}
+        - {x: 14, y: 87.5}
+        - {x: 12, y: 85.5}
+        - {x: 12, y: 81.5}
+        - {x: 10, y: 79.5}
+        - {x: 10, y: 77.5}
+        - {x: 8, y: 75.5}
+        - {x: 8, y: 44.5}
+        - {x: -10, y: 44.5}
+        - {x: -10, y: 75.5}
+        - {x: -12, y: 77.5}
+        - {x: -12, y: 79.5}
+        - {x: -14, y: 81.5}
+        - {x: -14, y: 85.5}
+        - {x: -17, y: 89.5}
+        - {x: -18, y: 92.5}
+        - {x: -20, y: 93.5}
+        - {x: -20, y: 95.5}
+        - {x: -22, y: 97.5}
+        - {x: -22, y: 101.5}
+        - {x: -25, y: 104.5}
+        - {x: -29, y: 104.5}
+        - {x: -36, y: 97.5}
+        - {x: -36, y: 95.5}
+        - {x: -38, y: 93.5}
+        - {x: -38, y: 91.5}
+        - {x: -40, y: 89.5}
+        - {x: -40, y: 87.5}
+        - {x: -42, y: 85.5}
+        - {x: -42, y: 83.5}
+        - {x: -44, y: 81.5}
+        - {x: -44, y: 79.5}
+        - {x: -46, y: 77.5}
+        - {x: -46, y: 44.5}
+        - {x: -64, y: 44.5}
+        - {x: -64, y: 79.5}
+        - {x: -66, y: 81.5}
+        - {x: -66, y: 85.5}
+        - {x: -69, y: 89.5}
+        - {x: -70, y: 92.5}
+        - {x: -72, y: 93.5}
+        - {x: -72, y: 95.5}
+        - {x: -74, y: 97.5}
+        - {x: -74, y: 99.5}
+        - {x: -77, y: 103.5}
+        - {x: -78, y: 106.5}
+        - {x: -82, y: 109.5}
+        - {x: -86, y: 109.5}
+        - {x: -90, y: 106.5}
+        - {x: -91, y: 103.5}
+        - {x: -94, y: 99.5}
+        - {x: -94, y: 97.5}
+        - {x: -96, y: 95.5}
+        - {x: -96, y: 93.5}
+        - {x: -98, y: 91.5}
+        - {x: -98, y: 89.5}
+        - {x: -100, y: 87.5}
+        - {x: -100, y: 85.5}
+        - {x: -102, y: 83.5}
+        - {x: -102, y: 81.5}
+        - {x: -104, y: 79.5}
+        - {x: -104, y: 63.5}
+        - {x: -102, y: 61.5}
+        - {x: -102, y: -31.5}
+        - {x: -103, y: -32.5}
+        - {x: -105, y: -35.5}
+        - {x: -105, y: -66.5}
+        - {x: -102, y: -69.5}
+        - {x: -102, y: -71.5}
+        - {x: -105, y: -73.5}
+        - {x: -105, y: -98.5}
+        - {x: -104, y: -99.5}
+        - {x: -101, y: -100.5}
+        - {x: -96, y: -100.5}
+        - {x: -90, y: -103.5}
+        - {x: -80, y: -103.5}
+        - {x: -79, y: -104.5}
+        - {x: -64, y: -104.5}
+        - {x: -63, y: -103.5}
+        - {x: -56, y: -103.5}
+        - {x: -55, y: -102.5}
+        - {x: -47, y: -101.5}
+        - {x: -46, y: -102.5}
+        - {x: -35, y: -103.5}
+        - {x: -32, y: -105.5}
+        - {x: -17, y: -105.5}
+        - {x: -15, y: -103.5}
+        - {x: -10, y: -103.5}
+        - {x: -7, y: -101.5}
+        - {x: -2, y: -101.5}
+        - {x: -1, y: -100.5}
+        - {x: 2, y: -100.5}
+        - {x: 3, y: -101.5}
+        - {x: 8, y: -101.5}
+        - {x: 9, y: -102.5}
+        - {x: 14, y: -102.5}
+        - {x: 15, y: -103.5}
+        - {x: 27, y: -103.5}
+        - {x: 28, y: -104.5}
+        - {x: 32, y: -104.5}
+        - {x: 33, y: -103.5}
+        - {x: 42, y: -103.5}
+        - {x: 44, y: -105.5}
+        - {x: 49, y: -105.5}
+        - {x: 51, y: -107.5}
+        - {x: 61, y: -107.5}
+        - {x: 63, y: -105.5}
+        - {x: 89, y: -105.5}
+        - {x: 93, y: -102.5}
+      - - {x: -63, y: -78.5}
+        - {x: -63, y: -76.5}
+        - {x: -65, y: -74.5}
+        - {x: -65, y: -70.5}
+        - {x: -63, y: -67.5}
+        - {x: -62, y: -66.5}
+        - {x: -55, y: -66.5}
+        - {x: -53, y: -68.5}
+        - {x: -49, y: -68.5}
+        - {x: -47, y: -70.5}
+        - {x: -47, y: -72.5}
+        - {x: -51, y: -72.5}
+        - {x: -54, y: -75.5}
+        - {x: -54, y: -77.5}
+        - {x: -56, y: -77.5}
+        - {x: -60, y: -79.5}
+        - {x: -61, y: -78.5}
+      - - {x: -5, y: -70.5}
+        - {x: -6, y: -70.5}
+        - {x: -7, y: -71.5}
+        - {x: -9, y: -71.5}
+        - {x: -8, y: -69.5}
+        - {x: -7, y: -68.5}
+        - {x: -1, y: -68.5}
+        - {x: 0, y: -69.5}
+        - {x: 6, y: -68.5}
+        - {x: 7, y: -69.5}
+        - {x: 7, y: -74.5}
+        - {x: 4, y: -72.5}
+        - {x: 2, y: -72.5}
+        - {x: -1, y: -74.5}
+        - {x: -1, y: -73.5}
+      - - {x: 47, y: -68.5}
+        - {x: 48, y: -69.5}
+        - {x: 47, y: -69.5}
+      - - {x: -63, y: 3.5}
+        - {x: -61, y: 6.5}
+        - {x: -60, y: 6.5}
+        - {x: -59, y: 7.5}
+        - {x: -49, y: 7.5}
+        - {x: -49, y: -30.5}
+        - {x: -63, y: -30.5}
+      - - {x: -9, y: -12.5}
+        - {x: -15, y: -6.5}
+        - {x: -14, y: -3.5}
+        - {x: -14, y: -1.5}
+        - {x: -9, y: 3.5}
+        - {x: -8, y: 6.5}
+        - {x: -7, y: 7.5}
+        - {x: 7, y: 7.5}
+        - {x: 7, y: -30.5}
+        - {x: -9, y: -30.5}
+      - - {x: 47, y: 5.5}
+        - {x: 49, y: 7.5}
+        - {x: 59, y: 7.5}
+        - {x: 59, y: -0.5}
+        - {x: 61, y: -2.5}
+        - {x: 61, y: -14.5}
+        - {x: 59, y: -16.5}
+        - {x: 59, y: -30.5}
+        - {x: 47, y: -30.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: e76a9fd15b5c30c4cbec1d0398c7b1c4
+      internalID: 1991771142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_14
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 659
+        width: 204
+        height: 223
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3efeefb8ad9a4d743ab752356bd0f93e
+      internalID: -936033564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_15
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 663
+        width: 217
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dfa189ba1d539e4d9918e8fb818992e
+      internalID: -141230056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_16
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 657
+        width: 219
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2c0fa83e5d8ba4897e38daa366c26d
+      internalID: 1969533356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_17
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 338
+        width: 144
+        height: 265
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef2a8eec72ace8488f53009945d3a29
+      internalID: 1310131352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_18
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 336
+        width: 160
+        height: 267
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9e3e994b69e2147827dc98213c6c97
+      internalID: -1004370348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_19
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 334
+        width: 171
+        height: 265
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6336be18c6a54574eac3697856db0315
+      internalID: -1768712623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_20
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 338
+        width: 131
+        height: 263
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd4b8b42c00f24408a0eb1d1824246c
+      internalID: 1092723487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_21
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 332
+        width: 144
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7f65c08a9b57bb4d81e809804bd7f0b
+      internalID: 1305605308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_22
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 330
+        width: 146
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b376fd9610336fe4e9cd12256aad9da4
+      internalID: 684573246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_23
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 334
+        width: 188
+        height: 275
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d9533716ce0c0244951c9e172f969ef
+      internalID: -307245039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_24
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 29
+        width: 213
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a777c522cb819d49a3805c4682dc146
+      internalID: 1187807364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_25
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 31
+        width: 219
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2428f29f82ef0f49b51999f61b40347
+      internalID: -649875363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_26
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 31
+        width: 202
+        height: 263
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15b8589ac3c4bd47bb3db9f4c930ea3
+      internalID: -537431218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_27
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 34
+        width: 193
+        height: 267
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae4188e049f858478be8e82e23d39be
+      internalID: 188256408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_28
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 29
+        width: 198
+        height: 278
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0163b5c29a025748bd956b0b473418e
+      internalID: 458873350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_29
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 17
+        width: 201
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff2069b62cdd054fa34a6c968d651f2
+      internalID: -1795848585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_30
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 23
+        width: 194
+        height: 278
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f04c91029b8c6047b41d909c14f260f
+      internalID: 1090337193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_walls_sector_a_sheet 1_31
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 59
+        width: 165
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ea903294c86e34aa2e32aac6b912a2
+      internalID: -78294535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: e96497db5a0f8f14eb702d3478557988
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      room_walls_sector_a_sheet 1_0: -697603358
+      room_walls_sector_a_sheet 1_1: -768323338
+      room_walls_sector_a_sheet 1_10: 2093792637
+      room_walls_sector_a_sheet 1_11: -1995150294
+      room_walls_sector_a_sheet 1_12: 2098935976
+      room_walls_sector_a_sheet 1_13: 1991771142
+      room_walls_sector_a_sheet 1_14: -936033564
+      room_walls_sector_a_sheet 1_15: -141230056
+      room_walls_sector_a_sheet 1_16: 1969533356
+      room_walls_sector_a_sheet 1_17: 1310131352
+      room_walls_sector_a_sheet 1_18: -1004370348
+      room_walls_sector_a_sheet 1_19: -1768712623
+      room_walls_sector_a_sheet 1_2: -1250609588
+      room_walls_sector_a_sheet 1_20: 1092723487
+      room_walls_sector_a_sheet 1_21: 1305605308
+      room_walls_sector_a_sheet 1_22: 684573246
+      room_walls_sector_a_sheet 1_23: -307245039
+      room_walls_sector_a_sheet 1_24: 1187807364
+      room_walls_sector_a_sheet 1_25: -649875363
+      room_walls_sector_a_sheet 1_26: -537431218
+      room_walls_sector_a_sheet 1_27: 188256408
+      room_walls_sector_a_sheet 1_28: 458873350
+      room_walls_sector_a_sheet 1_29: -1795848585
+      room_walls_sector_a_sheet 1_3: 422923729
+      room_walls_sector_a_sheet 1_30: 1090337193
+      room_walls_sector_a_sheet 1_31: -78294535
+      room_walls_sector_a_sheet 1_4: 537155822
+      room_walls_sector_a_sheet 1_5: 1781826980
+      room_walls_sector_a_sheet 1_6: -2092617930
+      room_walls_sector_a_sheet 1_7: 1929687577
+      room_walls_sector_a_sheet 1_8: -1086966108
+      room_walls_sector_a_sheet 1_9: -250196851
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
