@@ -1,0 +1,16 @@
+✅ ЭТО ПРАВИЛЬНАЯ ПАПКА ДЛЯ UNITY HUB
+
+Unity Hub → Add → Add project from disk → выбери ЭТУ папку:
+  .../GameUnity/Unity/UnstableExperiment
+
+НЕ открывай:
+  ❌ GameUnity/              (корень репозитория)
+  ❌ GameUnity/Unity/        (родительская папка)
+
+Версия Unity: 2022.3.20f1
+
+После открытия:
+  1. Дождись импорта (Library/ создастся сама)
+  2. git checkout dev2
+  3. Assets/Scenes/Main.unity
+  4. Меню Unstable Experiment → Шаг 1 → Play

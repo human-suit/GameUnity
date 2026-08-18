@@ -9,11 +9,11 @@ public class VisionFog : MonoBehaviour
     [Tooltip("Объект Player на сцене")]
     public Transform player;
 
-    [Tooltip("Радиус яркого круга вокруг героя")]
-    public float innerRadius = 1.6f;
+    [Tooltip("Радиус яркого круга вокруг героя (при Cell Size ~3 ставь 12+)")]
+    public float innerRadius = 12f;
 
     [Tooltip("Где уже полная темнота")]
-    public float outerRadius = 3.2f;
+    public float outerRadius = 20f;
 
     [Tooltip("Насколько резко уходит в темноту (больше = резче)")]
     public float falloffPower = 2.5f;
