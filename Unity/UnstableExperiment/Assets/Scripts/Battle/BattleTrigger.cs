@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class BattleTrigger : MonoBehaviour
 {
-     [SerializeField] private string enemyID = "Enemy_001";
+    [SerializeField] private string enemyID = "Enemy_001";
+    [SerializeField] private string encounterID = "Enemy_001_Main";
+    [SerializeField] private BattleEnemyDefinition battleDefinition;
+    [SerializeField] private Sprite battleBackground;
 
     private bool playerEntered = false;
 
@@ -13,7 +16,7 @@ public class BattleTrigger : MonoBehaviour
     {
         // Если этого врага уже победили,
         // убираем его с карты.
-        if (GameManager.Instance.IsEnemyDefeated(enemyID))
+        if (GameState.IsEnemyDefeated(encounterID))
         {
             gameObject.SetActive(false);
         }
@@ -31,7 +34,12 @@ public class BattleTrigger : MonoBehaviour
 
         Debug.Log("Player encountered enemy: " + enemyID);
 
-        GameManager.Instance.StartBattle(enemyID);
+        BattleEncounterData.Begin(
+            enemyID,
+            encounterID,
+            other.transform.position,
+            battleDefinition,
+            battleBackground);
 
         SceneManager.LoadScene("Battle");
     }

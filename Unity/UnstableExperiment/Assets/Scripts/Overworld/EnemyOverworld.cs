@@ -20,6 +20,8 @@ public class EnemyOverworld : MonoBehaviour
     [SerializeField] private string enemyId = "test_enemy";
     [SerializeField] private string encounterId = "enemy_main_01";
     [SerializeField] private string battleScene = "Battle";
+    [SerializeField] private BattleEnemyDefinition battleDefinition;
+    [SerializeField] private Sprite battleBackground;
 
     [Header("Патруль")]
     [Min(0.1f)]
@@ -217,7 +219,9 @@ public class EnemyOverworld : MonoBehaviour
         BattleEncounterData.Begin(
             enemyId,
             encounterId,
-            _player.transform.position);
+            _player.transform.position,
+            battleDefinition,
+            battleBackground);
         SceneManager.LoadScene(battleScene);
     }
 

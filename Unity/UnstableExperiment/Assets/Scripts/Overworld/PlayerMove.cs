@@ -24,6 +24,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
+        Frozen = false;
+
         if (!BattleEncounterData.TryConsumeReturnPosition(out Vector2 returnPosition))
             return;
 
