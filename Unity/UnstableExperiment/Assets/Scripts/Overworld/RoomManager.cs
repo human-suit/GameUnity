@@ -2,24 +2,18 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 /// <summary>
-/// Текущая комната: фон, двери, лут, позиция игрока.
+/// Текущая комната: фон, лут, позиция игрока.
 /// </summary>
 public class RoomManager : MonoBehaviour
 {
     public Transform roomBackground;
     public Transform player;
-    public Transform doorsRoot;
     public Transform lootRoot;
 
     [Header("Настройки")]
     public float roomHeight = 16f;
-    public float doorTriggerSize = 1.8f;
 
-    [Header("Двери — координаты задаёшь в Inspector")]
-    public Vector3 doorNorth;
-    public Vector3 doorSouth;
-    public Vector3 doorEast;
-    public Vector3 doorWest;
+    [Header("Старт игрока")]
     public Vector3 spawnPoint;
 
     public string StatusMessage { get; private set; }
@@ -29,13 +23,6 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
-        if (doorsRoot == null)
-        {
-            var doors = new GameObject("Doors");
-            doors.transform.SetParent(transform);
-            doorsRoot = doors.transform;
-        }
-
         if (lootRoot == null)
         {
             var loot = new GameObject("Loot");
@@ -43,10 +30,10 @@ public class RoomManager : MonoBehaviour
             lootRoot = loot.transform;
         }
 
-        LoadRoom(GameState.CurrentRoomId, null);
+        LoadRoom(GameState.CurrentRoomId);
     }
 
-    public void LoadRoom(string roomId, string entryDoorId)
+    public void LoadRoom(string roomId)
     {
         var room = RoomDatabase.GetRoom(roomId);
         if (room == null)
@@ -59,30 +46,10 @@ public class RoomManager : MonoBehaviour
         GameState.CurrentRoomId = roomId;
 
         ApplyBackground(room);
-        RebuildDoors(room);
         RebuildLoot(room);
-        PlacePlayer(entryDoorId);
+        PlacePlayer();
 
         ShowMessage(room.nameRu, 2f);
-    }
-
-    public void TryUseDoor(DoorTrigger door)
-    {
-        if (door == null) return;
-
-        if (door.IsLocked)
-        {
-            ShowMessage(door.lockedHintRu ?? "Заперто", 2.5f);
-            return;
-        }
-
-        if (string.IsNullOrEmpty(door.targetRoom))
-        {
-            ShowMessage("Дверь никуда не ведёт", 2f);
-            return;
-        }
-
-        LoadRoom(door.targetRoom, door.doorId);
     }
 
     public void ShowMessage(string text, float seconds = 2.5f)
@@ -115,34 +82,6 @@ public class RoomManager : MonoBehaviour
         FitSpriteHeight(roomBackground, sr, roomHeight);
     }
 
-    private void RebuildDoors(RoomDef room)
-    {
-        if (doorsRoot == null) return;
-
-        for (int i = doorsRoot.childCount - 1; i >= 0; i--)
-            Destroy(doorsRoot.GetChild(i).gameObject);
-
-        if (room.doors == null) return;
-
-        foreach (var def in room.doors)
-        {
-            var go = new GameObject($"Door_{def.id}");
-            go.transform.SetParent(doorsRoot);
-            go.transform.position = DoorWorldPosition(def.id);
-
-            var col = go.AddComponent<BoxCollider2D>();
-            col.isTrigger = true;
-            col.size = new Vector2(doorTriggerSize, doorTriggerSize * 0.75f);
-
-            var door = go.AddComponent<DoorTrigger>();
-            door.doorId = def.id;
-            door.labelRu = def.labelRu;
-            door.targetRoom = def.targetRoom;
-            door.requiresKey = def.requiresKey;
-            door.lockedHintRu = def.lockedHintRu;
-        }
-    }
-
     private void RebuildLoot(RoomDef room)
     {
         if (lootRoot == null) return;
@@ -173,38 +112,10 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private void PlacePlayer(string entryDoorId)
+    private void PlacePlayer()
     {
         if (player == null) return;
-
-        if (string.IsNullOrEmpty(entryDoorId))
-        {
-            player.position = spawnPoint;
-            return;
-        }
-
-        var doorPos = DoorWorldPosition(entryDoorId);
-        var offset = entryDoorId switch
-        {
-            "north" => Vector3.down,
-            "south" => Vector3.up,
-            "east" => Vector3.left,
-            "west" => Vector3.right,
-            _ => Vector3.zero
-        };
-        player.position = doorPos + offset * 1.4f;
-    }
-
-    public Vector3 DoorWorldPosition(string doorId)
-    {
-        return doorId switch
-        {
-            "north" => doorNorth,
-            "south" => doorSouth,
-            "east" => doorEast,
-            "west" => doorWest,
-            _ => Vector3.zero
-        };
+        player.position = spawnPoint;
     }
 
     private static Vector3 LootWorldPosition(int index)

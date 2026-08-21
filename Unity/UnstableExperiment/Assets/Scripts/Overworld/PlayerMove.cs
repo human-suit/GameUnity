@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour
     [Tooltip("Скорость ходьбы")]
     public float speed = 4f;
 
+    public static bool Frozen;
+
     private Rigidbody2D _rb;
 
     private void Awake()
@@ -20,8 +22,24 @@ public class PlayerMove : MonoBehaviour
         _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
+    private void Start()
+    {
+        if (!BattleEncounterData.TryConsumeReturnPosition(out Vector2 returnPosition))
+            return;
+
+        _rb.position = returnPosition;
+        _rb.velocity = Vector2.zero;
+        Physics2D.SyncTransforms();
+    }
+
     private void FixedUpdate()
     {
+        if (Frozen)
+        {
+            _rb.velocity = Vector2.zero;
+            return;
+        }
+
         float x = Input.GetAxisRaw("Horizontal"); // A/D или ←/→
         float y = Input.GetAxisRaw("Vertical");   // W/S или ↑/↓
 

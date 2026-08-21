@@ -15,6 +15,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Play()
     {
+        GameState.ResetRun();
         SceneManager.LoadScene("Main");
     }
 
