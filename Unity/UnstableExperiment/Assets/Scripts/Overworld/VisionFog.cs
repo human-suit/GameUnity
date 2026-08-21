@@ -63,7 +63,7 @@ public class VisionFog : MonoBehaviour
         mr.sharedMaterial = _material;
         mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         mr.receiveShadows = false;
-
+        mr.sortingOrder = 1000;
         _overlay = go.transform;
     }
 

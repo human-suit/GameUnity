@@ -26,7 +26,7 @@ public class GameHUD : MonoBehaviour
         int boxHeight = GameState.Keys.Count > 0 ? 132 : 110;
         GUI.Box(new Rect(10, 10, 320, boxHeight), "");
         GUI.Label(new Rect(20, 18, 300, 22), $"Комната: {roomName}");
-        GUI.Label(new Rect(20, 40, 300, 22), "WASD — ходьба · E — дверь / предмет");
+        GUI.Label(new Rect(20, 40, 300, 22), "WASD — ходьба · E — предмет");
 
         string hint = _player != null ? _player.GetNearbyHint() : null;
         if (!string.IsNullOrEmpty(hint))

@@ -29,7 +29,7 @@ public class CollisionDebugView : MonoBehaviour
             return;
 
         _renderer.enabled = !Application.isPlaying;
-        _renderer.sortingOrder = -100;
-        _tilemap.color = new Color(0.6f, 0.2f, 1f, 0.35f);
+        _renderer.sortingOrder = 100;
+        _tilemap.color = new Color(0.2f, 1f, 0.3f, 0.35f);
     }
 }
