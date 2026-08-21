@@ -1,0 +1,24 @@
+WARD HULK merged asset sheet black background. Keep TOP sections from attached merged reference EXACTLY: HEALTH 28 palette FRONT BACK BODY PARTS EXPRESSIONS COMBAT CARDS ITEMS same style.
+
+FIX ALL WALK ANIMATIONS - CRITICAL alternating leg walk cycles 8 frames each:
+
+WALK FRONT 8 frames toward camera MUST alternate legs every step:
+frame 1 right foot forward left foot back
+frame 2 passing mid stride
+frame 3 LEFT foot forward right foot back
+frame 4 passing
+frame 5 right forward left back
+frame 6 passing
+frame 7 LEFT forward right back
+frame 8 passing
+NOT same leg forward every frame.
+
+WALK BACK 8 frames away from camera alternate legs same pattern from behind view left right left right.
+
+WALK RIGHT 8 frames side view proper walk cycle right-left-right-left contact passing feet baseline.
+
+WALK LEFT 8 frames mirror side view alternating legs.
+
+Keep IDLE 6 ACTION 4 STAGGER 3 DEATH 5 from merged reference good quality.
+
+Labels every row. Mottled skin harness kilt cleaver. One image.

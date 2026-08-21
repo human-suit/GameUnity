@@ -8,6 +8,7 @@ public static class GameState
     public static readonly HashSet<string> Keys = new();
     public static readonly HashSet<string> CollectedLoot = new();
     public static readonly HashSet<string> DefeatedEnemies = new();
+    public static readonly List<BattleCardData> CardDeck = new();
 
     public static int PlayerHealth { get; private set; } = PlayerMaxHealth;
 
@@ -48,12 +49,31 @@ public static class GameState
             DefeatedEnemies.Add(encounterId);
     }
 
+    public static void InitializeCardDeck(IEnumerable<BattleCardData> cards)
+    {
+        if (CardDeck.Count > 0 || cards == null)
+            return;
+
+        foreach (BattleCardData card in cards)
+        {
+            if (card != null)
+                CardDeck.Add(card);
+        }
+    }
+
+    public static void AddCard(BattleCardData card)
+    {
+        if (card != null)
+            CardDeck.Add(card);
+    }
+
     public static void ResetRun()
     {
         CurrentRoomId = "a_plaza";
         Keys.Clear();
         CollectedLoot.Clear();
         DefeatedEnemies.Clear();
+        CardDeck.Clear();
         RestorePlayerFullHealth();
         BattleEncounterData.Clear();
     }

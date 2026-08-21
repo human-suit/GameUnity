@@ -12,19 +12,25 @@ public static class BattleEncounterData
     public static string SourceScene { get; private set; }
     public static Vector2 ReturnPosition { get; private set; }
     public static bool ReturnPending { get; private set; }
+    public static BattleEnemyDefinition EnemyDefinition { get; private set; }
+    public static Sprite BackgroundOverride { get; private set; }
 
     public static bool HasEncounter => !string.IsNullOrEmpty(EnemyId);
 
     public static void Begin(
         string enemyId,
         string encounterId,
-        Vector2 returnPosition)
+        Vector2 returnPosition,
+        BattleEnemyDefinition enemyDefinition = null,
+        Sprite backgroundOverride = null)
     {
         EnemyId = string.IsNullOrWhiteSpace(enemyId) ? "enemy" : enemyId;
         EncounterId = encounterId;
         SourceScene = SceneManager.GetActiveScene().name;
         ReturnPosition = returnPosition;
         ReturnPending = false;
+        EnemyDefinition = enemyDefinition;
+        BackgroundOverride = backgroundOverride;
     }
 
     public static void QueueReturn()
@@ -49,5 +55,7 @@ public static class BattleEncounterData
         SourceScene = null;
         ReturnPosition = Vector2.zero;
         ReturnPending = false;
+        EnemyDefinition = null;
+        BackgroundOverride = null;
     }
 }

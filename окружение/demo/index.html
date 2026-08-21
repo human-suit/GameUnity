@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Unstable Experiment — Demo v3</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0a;
+      color: #c4b8a8;
+      font-family: Georgia, serif;
+      min-height: 100vh;
+    }
+    header {
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    header h1 { font-size: 1.1rem; font-weight: normal; letter-spacing: 0.05em; }
+    header p { font-size: 0.85rem; color: #6a6a6a; margin-top: 0.3rem; }
+    main { padding: 1.5rem 2rem; display: flex; flex-direction: column; gap: 2rem; }
+    section h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #5a5048;
+      margin-bottom: 0.75rem;
+    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    figure {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      padding: 0.5rem;
+    }
+    figure img {
+      width: 100%;
+      display: block;
+      filter: blur(0.4px);
+      image-rendering: auto;
+    }
+    figcaption {
+      font-size: 0.8rem;
+      padding: 0.6rem 0.3rem 0.2rem;
+      color: #8a8078;
+    }
+    .full img { max-height: 70vh; object-fit: contain; }
+    .checklist {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      padding: 1rem 1.2rem;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .checklist li { margin-left: 1.2rem; }
+    .ok { color: #6a8a6a; }
+    .wait { color: #8a7a4a; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Unstable Experiment — Asset Demo v3</h1>
+    <p>Unified v4 — все персонажи · промпт: prompts/MASTER-unified-sheet.md</p>
+  </header>
+  <main>
+    <section class="full">
+      <h2>Combat mockup — огр = стиль листа</h2>
+      <figure>
+        <img src="combat_mockup_demo_v2.png" alt="Combat mockup">
+        <figcaption>Ward Hulk в том же stipple/cross-hatch что на unified sheet</figcaption>
+      </figure>
+    </section>
+    <section class="full">
+      <h2>Merged — walk FRONT/BACK чередуют ноги</h2>
+      <figure>
+        <img src="ward_hulk_merged_sheet_v2.png" alt="merged">
+        <figcaption>R-L-R-L на WALK FRONT / BACK / RIGHT / LEFT</figcaption>
+      </figure>
+    </section>
+    <section class="full">
+      <h2>Ward Hulk — style reference</h2>
+      <figure>
+        <img src="ward_hulk_unified_sheet_v5.png" alt="v5">
+        <figcaption>Эталон layout + F&H рисовка</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Все враги — unified v5 (полный style lock)</h2>
+      <p style="font-size:0.85rem;color:#6a6a6a;margin-bottom:0.75rem">Subject 07 (ГГ) — v4, без изменений</p>
+      <div class="grid">
+        <figure><img src="characters/subject_07_unified_sheet.png" alt="07"><figcaption>Subject 07 · HP 40</figcaption></figure>
+        <figure><img src="characters/subject_03_unified_sheet.png" alt="03"><figcaption>Subject 03 · HP 20</figcaption></figure>
+        <figure><img src="characters/plague_unified_sheet.png" alt="plague"><figcaption>Plague · HP 32</figcaption></figure>
+        <figure><img src="characters/subject_12_unified_sheet.png" alt="12"><figcaption>Subject 12 · HP 44</figcaption></figure>
+        <figure><img src="characters/ward_hulk_unified_sheet.png" alt="hulk"><figcaption>Ward Hulk · HP 28</figcaption></figure>
+        <figure><img src="characters/mask_wretch_unified_sheet.png" alt="mask"><figcaption>Mask Wretch · HP 18</figcaption></figure>
+        <figure><img src="characters/pit_dweller_unified_sheet.png" alt="pit"><figcaption>Pit Dweller · HP 14</figcaption></figure>
+        <figure><img src="characters/patchwork_butcher_unified_sheet.png" alt="boss"><figcaption>Butcher · HP 85</figcaption></figure>
+      </div>
+    </section>
+    <section>
+      <h2>Окружение — 3 сектора (F&H v1)</h2>
+      <div class="grid">
+        <figure><img src="environment/combat_bg_sector_a.png" alt="A combat"><figcaption>Sector A · combat BG · baseline</figcaption></figure>
+        <figure><img src="environment/combat_bg_sector_b.png" alt="B combat"><figcaption>Sector B · combat BG · green toxin</figcaption></figure>
+        <figure><img src="environment/combat_bg_sector_c.png" alt="C combat"><figcaption>Sector C · combat BG · disposal yard</figcaption></figure>
+        <figure><img src="environment/topdown_sector_a_sheet.png" alt="A topdown"><figcaption>Sector A · top-down props</figcaption></figure>
+        <figure><img src="environment/topdown_sector_b_sheet.png" alt="B topdown"><figcaption>Sector B · top-down props</figcaption></figure>
+        <figure><img src="environment/topdown_sector_c_sheet.png" alt="C topdown"><figcaption>Sector C · top-down props</figcaption></figure>
+      </div>
+    </section>
+    <section>
+      <h2>Игра — комната + Route Map (Sector A)</h2>
+      <p style="font-size:0.85rem;color:#6a6a6a;margin-bottom:0.75rem">Концепция: <code>КОНЦЕПЦИЯ-ИГРЫ.md</code> · граф: <code>игра/data/rooms_graph.json</code></p>
+      <div class="grid">
+        <figure><img src="game/a_plaza_room.png" alt="plaza"><figcaption>a_plaza · hub 18×14 · 4 двери</figcaption></figure>
+        <figure><img src="game/route_map_sector_a.png" alt="map"><figcaption>Route Map A · STS-узлы, без телепорта</figcaption></figure>
+        <figure><img src="game/doors_sector_a_sheet.png" alt="doors"><figcaption>Двери: WELL · ALLEY · HOME · GATE</figcaption></figure>
+      </div>
+    </section>
+    <section>
+      <h2>Чеклист v4</h2>
+      <ul class="checklist">
+        <li class="ok">Единый layout: FRONT/BACK/PARTS/EXPR/CARDS + 4-dir WALK</li>
+        <li class="ok">WALK FRONT/BACK — чередование ног R-L-R-L</li>
+        <li class="ok">7 врагов v5 — все правки сессии</li>
+        <li class="ok">Subject 07 v4 — отдельно, не переделывали</li>
+        <li class="wait">Проверить walk на каждом листе вручную</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
