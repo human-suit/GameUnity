@@ -23,18 +23,7 @@ public class RoomDef
     public string id;
     public string type;
     public string nameRu;
-    public DoorDef[] doors;
     public LootDef[] loot;
-}
-
-[Serializable]
-public class DoorDef
-{
-    public string id;
-    public string labelRu;
-    public string targetRoom;
-    public string requiresKey;
-    public string lockedHintRu;
 }
 
 [Serializable]
