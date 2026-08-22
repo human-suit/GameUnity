@@ -14,6 +14,8 @@ public class PlayerMove : MonoBehaviour
 
     private Rigidbody2D _rb;
 
+    public FootstepManager footstepManager;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -50,5 +52,7 @@ public class PlayerMove : MonoBehaviour
             move.Normalize();
 
         _rb.velocity = move * speed;
+
+        footstepManager.HandleMovement(move);
     }
 }
