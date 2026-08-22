@@ -20,6 +20,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private TMP_Text energyText;
     [SerializeField] private int maxEnergy = 3;
     private int currentEnergy;
+    public int CurrentEnergy => currentEnergy;
+    public int MaxEnergy => maxEnergy;
 
     [SerializeField] private TMP_Text blockText;
     private int currentBlock = 0;
@@ -115,6 +117,7 @@ public class BattleManager : MonoBehaviour
         ApplyPlayerHealthBarStyle();
         ApplyEndTurnBell();
         InitializeCardBattle();
+        StatusPlaqueHud.Ensure(this);
         UpdatePlayerStatusUI();
         SetBattleMessage("Выберите действие.");
         RefreshLeftPanel();
@@ -1282,6 +1285,9 @@ public class BattleManager : MonoBehaviour
             playerMoneyText.text = GameState.PlayerMoney.ToString();
 
         RefreshLeftPanel();
+        StatusPlaqueHud plaque = FindFirstObjectByType<StatusPlaqueHud>();
+        if (plaque != null)
+            plaque.Refresh();
     }
 
     private void RefreshStatusText()
