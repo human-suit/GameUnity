@@ -114,6 +114,9 @@ MonoBehaviour:
   fallbackEnergyText: {fileID: 4003}
   attackColor: {r: 0.45, g: 0.12, b: 0.12, a: 1}
   defenseColor: {r: 0.12, g: 0.25, b: 0.45, a: 1}
+  hoverScale: 1.35
+  hoverLift: 28
+  hoverAnimDuration: 0.22
 --- !u!1 &2000
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +184,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 26
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -260,16 +263,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Description
 --- !u!1 &4000
