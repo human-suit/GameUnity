@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         playerData = new PlayerData();
+        GameState.ResetRun();
 
         defeatedEnemies.Clear();
 

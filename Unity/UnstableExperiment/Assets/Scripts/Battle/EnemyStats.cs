@@ -4,9 +4,11 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 90;
+    [SerializeField] private string displayName = "Враг";
     public int attackDamage = 10;
 
     public int MaxHealth => maxHealth;
+    public string DisplayName => displayName;
     public int CurrentHealth { get; private set; }
 
     private readonly List<EnemyBodyPart> _bodyParts =
@@ -135,6 +137,45 @@ public class EnemyStats : MonoBehaviour
             EnemyBodyPartType.Torso,
             damage,
             out _);
+    }
+
+    public string GetBodyPartInfo(EnemyBodyPartType type)
+    {
+        EnemyBodyPart part = GetBodyPart(type);
+        if (part == null)
+            return "Эта часть тела не найдена.";
+
+        if (part.IsDestroyed)
+            return $"{part.DisplayName} уже уничтожена.";
+
+        int hitChance = GetHitChance(type);
+        return
+            $"{part.DisplayName}\n" +
+            $"HP {part.CurrentHealth}/{part.MaxHealth}\n" +
+            $"Шанс попасть: {hitChance}%\n" +
+            GetDestroyEffect(type);
+    }
+
+    public static string GetDestroyEffect(EnemyBodyPartType type)
+    {
+        return type switch
+        {
+            EnemyBodyPartType.Head =>
+                "Если уничтожить: враг умрёт.",
+            EnemyBodyPartType.Torso =>
+                "Если уничтожить: враг умрёт.",
+            EnemyBodyPartType.LeftArm =>
+                "Если уничтожить: урон врага уменьшится вдвое.\n" +
+                "Если обе руки уничтожены — враг не сможет атаковать.",
+            EnemyBodyPartType.RightArm =>
+                "Если уничтожить: урон врага уменьшится вдвое.\n" +
+                "Если обе руки уничтожены — враг не сможет атаковать.",
+            EnemyBodyPartType.LeftLeg =>
+                "Если уничтожить: попасть по другим частям станет легче (+10%).",
+            EnemyBodyPartType.RightLeg =>
+                "Если уничтожить: попасть по другим частям станет легче (+10%).",
+            _ => ""
+        };
     }
 
     public int GetCurrentAttackDamage()

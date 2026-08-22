@@ -1,56 +1,56 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-
-
-   
-[Serializable] public class PlayerData
+[Serializable]
+public class PlayerData
 {
-    public int maxHealth = 100;
-    public int currentHealth = 100;
+    public int maxHealth => GameState.PlayerMaxHealth;
+    public int currentHealth
+    {
+        get => GameState.PlayerHealth;
+        set => GameState.SetPlayerHealth(value);
+    }
 
-    public int level = 1;
+    public int level
+    {
+        get => GameState.PlayerLevel;
+        set => GameState.SetPlayerLevel(value);
+    }
 
-    public int currentXP = 0;
-    public int xpToNextLevel = 100;
+    public int currentXP
+    {
+        get => GameState.PlayerXP;
+        set => GameState.SetPlayerXP(value);
+    }
 
-    public int money = 100;
+    public int xpToNextLevel
+    {
+        get => GameState.XpToNextLevel;
+        set => GameState.SetXpToNextLevel(value);
+    }
+
+    public int money
+    {
+        get => GameState.PlayerMoney;
+        set => GameState.SetPlayerMoney(value);
+    }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-
-        if (currentHealth < 0)
-            currentHealth = 0;
+        GameState.DamagePlayer(damage);
     }
 
     public void Heal(int amount)
     {
-        currentHealth += amount;
-
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
+        GameState.HealPlayer(amount);
     }
 
     public void AddMoney(int amount)
     {
-        money += amount;
+        GameState.AddMoney(amount);
     }
 
     public void AddXP(int amount)
     {
-        currentXP += amount;
-
-        while (currentXP >= xpToNextLevel)
-        {
-            currentXP -= xpToNextLevel;
-
-            level++;
-
-            xpToNextLevel += 50;
-        }
+        GameState.AddXP(amount);
     }
 }
-

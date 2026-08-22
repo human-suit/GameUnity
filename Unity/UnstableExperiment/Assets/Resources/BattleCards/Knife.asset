@@ -20,4 +20,4 @@ MonoBehaviour:
   energyCost: 1
   damage: 20
   block: 0
-  artwork: {fileID: 21300000, guid: 3f97268f1ccdc354baa4fe5d136637f6, type: 3}
+  artwork: {fileID: 21300000, guid: 1e8c41132163df44c8ccfd25ce41df53, type: 3}

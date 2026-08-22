@@ -11,6 +11,10 @@ public static class GameState
     public static readonly List<BattleCardData> CardDeck = new();
 
     public static int PlayerHealth { get; private set; } = PlayerMaxHealth;
+    public static int PlayerLevel { get; private set; } = 1;
+    public static int PlayerXP { get; private set; }
+    public static int XpToNextLevel { get; private set; } = 100;
+    public static int PlayerMoney { get; private set; }
 
     public static bool HasKey(string keyId) =>
         !string.IsNullOrEmpty(keyId) && Keys.Contains(keyId);
@@ -32,12 +36,61 @@ public static class GameState
 
     public static void DamagePlayer(int damage)
     {
-        PlayerHealth = System.Math.Max(0, PlayerHealth - System.Math.Max(0, damage));
+        SetPlayerHealth(PlayerHealth - System.Math.Max(0, damage));
+    }
+
+    public static void HealPlayer(int amount)
+    {
+        SetPlayerHealth(PlayerHealth + System.Math.Max(0, amount));
+    }
+
+    public static void SetPlayerHealth(int health)
+    {
+        PlayerHealth = System.Math.Clamp(health, 0, PlayerMaxHealth);
     }
 
     public static void RestorePlayerFullHealth()
     {
         PlayerHealth = PlayerMaxHealth;
+    }
+
+    public static void SetPlayerLevel(int level)
+    {
+        PlayerLevel = System.Math.Max(1, level);
+    }
+
+    public static void SetPlayerMoney(int money)
+    {
+        PlayerMoney = System.Math.Max(0, money);
+    }
+
+    public static void SetPlayerXP(int xp)
+    {
+        PlayerXP = System.Math.Max(0, xp);
+    }
+
+    public static void SetXpToNextLevel(int value)
+    {
+        XpToNextLevel = System.Math.Max(1, value);
+    }
+
+    public static void AddMoney(int amount)
+    {
+        SetPlayerMoney(PlayerMoney + amount);
+    }
+
+    public static void AddXP(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        PlayerXP += amount;
+        while (PlayerXP >= XpToNextLevel)
+        {
+            PlayerXP -= XpToNextLevel;
+            PlayerLevel++;
+            XpToNextLevel += 50;
+        }
     }
 
     public static bool IsEnemyDefeated(string encounterId) =>
@@ -75,6 +128,10 @@ public static class GameState
         DefeatedEnemies.Clear();
         CardDeck.Clear();
         RestorePlayerFullHealth();
+        PlayerLevel = 1;
+        PlayerXP = 0;
+        XpToNextLevel = 100;
+        PlayerMoney = 0;
         BattleEncounterData.Clear();
     }
 }
