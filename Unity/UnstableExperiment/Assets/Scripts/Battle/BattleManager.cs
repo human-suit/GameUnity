@@ -34,6 +34,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private Button leftLegButton;
     [SerializeField] private Button rightLegButton;
     [SerializeField] private TMP_Text battleMessageText;
+    [SerializeField] private TMP_Text enemyNameText;
+    [SerializeField] private TMP_Text bodyPartInfoText;
+    [SerializeField] private RectTransform bodyPartInfoRoot;
     [SerializeField] private Slider enemyHealthSlider;
     [Range(0.01f, 1f)]
     [SerializeField] private float alphaHitTestThreshold = 0.1f;
@@ -42,21 +45,32 @@ public class BattleManager : MonoBehaviour
     [Header("Cards")]
     [SerializeField] private List<BattleCardData> startingDeck =
         new List<BattleCardData>();
+    [SerializeField] private int handSize = 5;
     [SerializeField] private BattleCardView cardViewPrefab;
     [SerializeField] private RectTransform handRoot;
     [SerializeField] private List<RectTransform> handSlots =
         new List<RectTransform>();
     [SerializeField] private RectTransform playerDropZone;
+    [SerializeField] private RectTransform bagRoot;
+    [SerializeField] private Image bagImage;
+    [SerializeField] private Sprite bagSprite;
     [SerializeField] private TMP_Text bagText;
+    [SerializeField] private float dealDuration = 0.35f;
+    [SerializeField] private float dealStagger = 0.08f;
 
     [Header("Battle presentation")]
     [SerializeField] private Image battleBackgroundImage;
     [SerializeField] private Image playerPortraitImage;
     [SerializeField] private Sprite playerPortrait;
     [SerializeField] private Slider playerHealthSlider;
+    [SerializeField] private Image playerHealthFill;
+    [SerializeField] private Color playerHealthColor =
+        new Color(0.78f, 0.12f, 0.12f, 1f);
     [SerializeField] private TMP_Text playerHealthText;
     [SerializeField] private TMP_Text playerLevelText;
     [SerializeField] private TMP_Text playerMoneyText;
+    [SerializeField] private Button endTurnButton;
+    [SerializeField] private Sprite endTurnBellSprite;
 
     public BattleState currentState;
     private string battleMessage = "Выберите действие.";
@@ -64,23 +78,31 @@ public class BattleManager : MonoBehaviour
     private readonly List<BattleCardData> hand = new List<BattleCardData>();
     private readonly List<BattleCardView> handViews =
         new List<BattleCardView>();
+    private Image highlightedImage;
+    private Color highlightedOriginal = Color.white;
+    private bool isDealing;
+
+    private string hoverInfoText = "";
+    private BattleCardView hoveredCard;
 
     private void OnValidate()
     {
-        if (playerPortraitImage == null)
-            return;
+        ApplyPlayerHealthBarStyle();
+        ApplyEndTurnBell(false);
+        BattleUiFonts.ApplyAllInScene();
+    }
 
-        if (playerPortrait != null)
-            playerPortraitImage.sprite = playerPortrait;
-
-        playerPortraitImage.preserveAspect = true;
-        playerPortraitImage.enabled = playerPortraitImage.sprite != null;
+    private void Awake()
+    {
+        BattleUiFonts.ApplyAllInScene();
     }
 
     private void Start()
     {
+        BattleUiFonts.ApplyAllInScene();
         currentState = BattleState.PlayerTurn;
         currentEnergy = maxEnergy;
+        FitBattleToScreen();
         UpdateEnergyUI();
         UpdateBlockUI();
         ShowBodyPartsPanel(true);
@@ -88,9 +110,14 @@ public class BattleManager : MonoBehaviour
         ConfigureBodyPartButtons();
         RefreshBodyPartButtons();
         ApplyBattlePresentation();
+        ApplyBagSprite();
+        EnsureBattleHud();
+        ApplyPlayerHealthBarStyle();
+        ApplyEndTurnBell();
         InitializeCardBattle();
         UpdatePlayerStatusUI();
         SetBattleMessage("Выберите действие.");
+        RefreshLeftPanel();
 
         Debug.Log("=== BATTLE STARTED ===");
         Debug.Log("Player Turn");
@@ -100,11 +127,18 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log("End turn botton pressed");
 
-        if (currentState != BattleState.PlayerTurn)
+        if (currentState != BattleState.PlayerTurn || isDealing)
             return;
 
+        EndTurnBellButton bell = endTurnButton != null
+            ? endTurnButton.GetComponent<EndTurnBellButton>()
+            : FindFirstObjectByType<EndTurnBellButton>();
+        if (bell != null)
+            bell.PlaySwing();
+
         ReturnHandToBag();
-        ShowBodyPartsPanel(false);
+        ClearTargetHighlights();
+        HideBodyPartInfo();
         Debug.Log("end player turn");
 
         StartEnemyTurn();
@@ -113,7 +147,6 @@ public class BattleManager : MonoBehaviour
     private void StartEnemyTurn()
     {
         currentState = BattleState.EnemyTurn;
-        ShowBodyPartsPanel(false);
 
         Debug.Log("Enemy Turn");
 
@@ -303,21 +336,29 @@ public class BattleManager : MonoBehaviour
 
     private void UpdateBlockUI()
     {
-        if (blockText != null)
-            blockText.text = $"Block: {currentBlock}";
+        if (blockText == null)
+            return;
+
+        bool hasBlock = currentBlock > 0;
+        blockText.gameObject.SetActive(hasBlock);
+        blockText.text = hasBlock ? $"Защита: {currentBlock}" : string.Empty;
     }
 
     public void SetBattleMessage(string message)
     {
         battleMessage = message;
 
-        if (battleMessageText != null)
-            battleMessageText.text = battleMessage;
+        RefreshLeftPanel();
     }
 
     private void InitializeCardBattle()
     {
-        GameState.InitializeCardDeck(startingDeck);
+        BattleCardData[] resourceCards =
+            Resources.LoadAll<BattleCardData>("BattleCards");
+        GameState.InitializeCardDeck(
+            resourceCards != null && resourceCards.Length > 0
+                ? resourceCards
+                : startingDeck);
 
         bag.Clear();
         bag.AddRange(GameState.CardDeck);
@@ -332,36 +373,12 @@ public class BattleManager : MonoBehaviour
         if (hand.Count > 0)
             ReturnHandToBag();
 
-        DrawCardsOfType(BattleCardType.Attack, 3);
-        DrawCardsOfType(BattleCardType.Defense, 2);
-
-        while (hand.Count < 5 && bag.Count > 0)
+        int cardsToDraw = Mathf.Min(handSize, bag.Count);
+        for (int drawn = 0; drawn < cardsToDraw; drawn++)
             DrawRandomCardFromBag();
 
-        RebuildHandViews();
+        RebuildHandViews(true);
         UpdateBagUI();
-    }
-
-    private void DrawCardsOfType(BattleCardType type, int count)
-    {
-        for (int drawn = 0; drawn < count; drawn++)
-        {
-            List<int> matchingIndices = new List<int>();
-
-            for (int i = 0; i < bag.Count; i++)
-            {
-                if (bag[i] != null && bag[i].type == type)
-                    matchingIndices.Add(i);
-            }
-
-            if (matchingIndices.Count == 0)
-                return;
-
-            int randomMatch = Random.Range(0, matchingIndices.Count);
-            int bagIndex = matchingIndices[randomMatch];
-            hand.Add(bag[bagIndex]);
-            bag.RemoveAt(bagIndex);
-        }
     }
 
     private void DrawRandomCardFromBag()
@@ -374,7 +391,7 @@ public class BattleManager : MonoBehaviour
         bag.RemoveAt(index);
     }
 
-    private void RebuildHandViews()
+    private void RebuildHandViews(bool animateFromBag)
     {
         foreach (BattleCardView view in handViews)
         {
@@ -392,6 +409,14 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        Vector3 bagPosition = bagRoot != null
+            ? bagRoot.position
+            : handRoot.position;
+
+        isDealing = animateFromBag && bagRoot != null;
+        if (isDealing)
+            PulseBag();
+
         for (int i = 0; i < hand.Count; i++)
         {
             Transform parent = i < handSlots.Count &&
@@ -404,8 +429,44 @@ public class BattleManager : MonoBehaviour
                 view.GetComponent<RectTransform>();
             viewTransform.anchoredPosition = Vector2.zero;
             view.Bind(hand[i], this);
+            view.PrepareForDeal(parent);
             handViews.Add(view);
+
+            if (isDealing)
+            {
+                view.AnimateDealFrom(
+                    bagPosition,
+                    i * dealStagger,
+                    dealDuration);
+            }
         }
+
+        if (isDealing)
+            StartCoroutine(FinishDealing(hand.Count));
+    }
+
+    private IEnumerator FinishDealing(int cardCount)
+    {
+        float wait = dealDuration + Mathf.Max(0, cardCount - 1) * dealStagger;
+        yield return new WaitForSeconds(wait);
+        isDealing = false;
+    }
+
+    private void PulseBag()
+    {
+        if (bagRoot == null)
+            return;
+
+        StopCoroutine(nameof(PulseBagRoutine));
+        StartCoroutine(PulseBagRoutine());
+    }
+
+    private IEnumerator PulseBagRoutine()
+    {
+        Vector3 original = bagRoot.localScale;
+        bagRoot.localScale = original * 1.15f;
+        yield return new WaitForSeconds(0.08f);
+        bagRoot.localScale = original;
     }
 
     private void ReturnHandToBag()
@@ -425,11 +486,46 @@ public class BattleManager : MonoBehaviour
 
     public bool CanDragCard(BattleCardView view)
     {
-        return view != null &&
+        return !isDealing &&
+            view != null &&
+            !view.IsDealing &&
             view.Data != null &&
             currentState == BattleState.PlayerTurn &&
             currentEnergy >= view.Data.energyCost &&
             hand.Contains(view.Data);
+    }
+
+    public void UpdateCardHover(
+        BattleCardView view,
+        PointerEventData eventData)
+    {
+        ClearTargetHighlights();
+
+        if (!CanDragCard(view) || eventData == null)
+            return;
+
+        if (view.Data.type == BattleCardType.Attack)
+        {
+            if (TryGetBodyPartAtPointer(eventData, out EnemyBodyPartType type))
+                HighlightImage(GetBodyPartImage(type));
+            return;
+        }
+
+        if (IsOverPlayer(eventData))
+            HighlightImage(
+                playerPortraitImage != null
+                    ? playerPortraitImage
+                    : playerDropZone != null
+                        ? playerDropZone.GetComponent<Image>()
+                        : null);
+    }
+
+    public void ClearTargetHighlights()
+    {
+        if (highlightedImage != null)
+            highlightedImage.color = highlightedOriginal;
+
+        highlightedImage = null;
     }
 
     public bool TryPlayCard(
@@ -450,6 +546,7 @@ public class BattleManager : MonoBehaviour
         if (!played)
             return false;
 
+        ClearTargetHighlights();
         currentEnergy -= card.energyCost;
         hand.Remove(card);
         handViews.Remove(view);
@@ -497,11 +594,7 @@ public class BattleManager : MonoBehaviour
         BattleCardData card,
         PointerEventData eventData)
     {
-        if (playerDropZone == null ||
-            !RectTransformUtility.RectangleContainsScreenPoint(
-                playerDropZone,
-                eventData.position,
-                eventData.pressEventCamera))
+        if (!IsOverPlayer(eventData))
         {
             SetBattleMessage("Перетащите карту защиты на персонажа.");
             return false;
@@ -566,10 +659,58 @@ public class BattleManager : MonoBehaviour
              target.transform.IsChildOf(button.transform));
     }
 
+    private bool IsOverPlayer(PointerEventData eventData)
+    {
+        if (eventData == null)
+            return false;
+
+        Camera camera = eventData.pressEventCamera;
+
+        if (playerPortraitImage != null &&
+            RectTransformUtility.RectangleContainsScreenPoint(
+                playerPortraitImage.rectTransform,
+                eventData.position,
+                camera))
+        {
+            return true;
+        }
+
+        return playerDropZone != null &&
+            RectTransformUtility.RectangleContainsScreenPoint(
+                playerDropZone,
+                eventData.position,
+                camera);
+    }
+
+    private Image GetBodyPartImage(EnemyBodyPartType type)
+    {
+        Button button = type switch
+        {
+            EnemyBodyPartType.Head => headButton,
+            EnemyBodyPartType.Torso => torsoButton,
+            EnemyBodyPartType.LeftArm => leftArmButton,
+            EnemyBodyPartType.RightArm => rightArmButton,
+            EnemyBodyPartType.LeftLeg => leftLegButton,
+            EnemyBodyPartType.RightLeg => rightLegButton,
+            _ => null
+        };
+
+        return button != null ? button.image : null;
+    }
+
+    private void HighlightImage(Image image)
+    {
+        if (image == null)
+            return;
+
+        highlightedImage = image;
+        highlightedOriginal = image.color;
+        image.color = new Color(1f, 0.86f, 0.28f, 1f);
+    }
+
     private void UpdateBagUI()
     {
-        if (bagText != null)
-            bagText.text = $"Мешок: {bag.Count}/{GameState.CardDeck.Count}";
+        RefreshLeftPanel();
     }
 
     private void AttackBodyPart(EnemyBodyPartType type)
@@ -658,15 +799,17 @@ public class BattleManager : MonoBehaviour
 
     private void ConfigureBodyPartButtons()
     {
-        ConfigureBodyPartButton(headButton);
-        ConfigureBodyPartButton(torsoButton);
-        ConfigureBodyPartButton(leftArmButton);
-        ConfigureBodyPartButton(rightArmButton);
-        ConfigureBodyPartButton(leftLegButton);
-        ConfigureBodyPartButton(rightLegButton);
+        ConfigureBodyPartButton(headButton, EnemyBodyPartType.Head);
+        ConfigureBodyPartButton(torsoButton, EnemyBodyPartType.Torso);
+        ConfigureBodyPartButton(leftArmButton, EnemyBodyPartType.LeftArm);
+        ConfigureBodyPartButton(rightArmButton, EnemyBodyPartType.RightArm);
+        ConfigureBodyPartButton(leftLegButton, EnemyBodyPartType.LeftLeg);
+        ConfigureBodyPartButton(rightLegButton, EnemyBodyPartType.RightLeg);
     }
 
-    private void ConfigureBodyPartButton(Button button)
+    private void ConfigureBodyPartButton(
+        Button button,
+        EnemyBodyPartType type)
     {
         if (button == null)
             return;
@@ -677,6 +820,96 @@ public class BattleManager : MonoBehaviour
 
         if (button.image != null)
             button.image.alphaHitTestMinimumThreshold = alphaHitTestThreshold;
+
+        BodyPartHoverTarget hover =
+            button.GetComponent<BodyPartHoverTarget>();
+        if (hover == null)
+            hover = button.gameObject.AddComponent<BodyPartHoverTarget>();
+
+        hover.Initialize(this, type);
+    }
+
+    public void ShowBodyPartInfo(
+        EnemyBodyPartType type,
+        RectTransform partRect)
+    {
+        if (enemy == null)
+            return;
+
+        hoverInfoText = enemy.GetBodyPartInfo(type);
+        RefreshLeftPanel();
+    }
+
+    public void HideBodyPartInfo()
+    {
+        hoverInfoText = "";
+        RefreshLeftPanel();
+    }
+
+    public void ShowCardInfo(BattleCardData card)
+    {
+        ShowCardInfo(null, card);
+    }
+
+    public void ShowCardInfo(BattleCardView view, BattleCardData card)
+    {
+        if (card == null)
+        {
+            HideCardInfo(view);
+            return;
+        }
+
+        hoveredCard = view;
+        hoverInfoText =
+            $"{card.displayName}\n" +
+            $"Энергия: {card.energyCost}\n" +
+            card.description;
+        RefreshLeftPanel();
+    }
+
+    public void HideCardInfo(BattleCardView view)
+    {
+        if (view != null && hoveredCard != null && hoveredCard != view)
+            return;
+
+        hoveredCard = null;
+        HideBodyPartInfo();
+    }
+
+    private void PositionBodyPartInfo(RectTransform partRect)
+    {
+        if (bodyPartInfoRoot == null || partRect == null)
+            return;
+
+        RectTransform parent = bodyPartInfoRoot.parent as RectTransform;
+        Camera camera = null;
+        Canvas canvas = bodyPartInfoRoot.GetComponentInParent<Canvas>();
+        if (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)
+            camera = canvas.worldCamera;
+
+        Vector3[] corners = new Vector3[4];
+        partRect.GetWorldCorners(corners);
+        Vector3 left = (corners[0] + corners[1]) * 0.5f;
+        Vector3 right = (corners[2] + corners[3]) * 0.5f;
+        Vector3 center = (left + right) * 0.5f;
+        bool placeRight = center.x < Screen.width * 0.5f;
+        Vector3 world = placeRight
+            ? right + new Vector3(24f, 0f, 0f)
+            : left - new Vector3(24f, 0f, 0f);
+
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parent,
+                world,
+                camera,
+                out Vector2 local))
+        {
+            bodyPartInfoRoot.anchorMin = new Vector2(0.5f, 0.5f);
+            bodyPartInfoRoot.anchorMax = new Vector2(0.5f, 0.5f);
+            bodyPartInfoRoot.pivot = placeRight
+                ? new Vector2(0f, 0.5f)
+                : new Vector2(1f, 0.5f);
+            bodyPartInfoRoot.anchoredPosition = local;
+        }
     }
 
     private void UpdateBodyPartButton(
@@ -711,8 +944,45 @@ public class BattleManager : MonoBehaviour
         enemyHealthSlider.value = enemy.CurrentHealth;
     }
 
+    private void FitBattleToScreen()
+    {
+        Canvas[] canvases = FindObjectsByType<Canvas>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None);
+        for (int i = 0; i < canvases.Length; i++)
+        {
+            CanvasScaler scaler = canvases[i].GetComponent<CanvasScaler>();
+            if (scaler == null)
+                continue;
+
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
+            scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+            scaler.matchWidthOrHeight = 0.5f;
+        }
+
+        if (battleBackgroundImage != null)
+        {
+            RectTransform rect = battleBackgroundImage.rectTransform;
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+            rect.SetAsFirstSibling();
+            battleBackgroundImage.preserveAspect = false;
+        }
+
+        Camera camera = Camera.main;
+        if (camera != null)
+        {
+            camera.clearFlags = CameraClearFlags.SolidColor;
+            camera.backgroundColor = new Color(0.04f, 0.03f, 0.03f, 1f);
+        }
+    }
+
     private void ApplyBattlePresentation()
     {
+        FitBattleToScreen();
         BattleEnemyDefinition definition =
             BattleEncounterData.EnemyDefinition;
 
@@ -726,14 +996,8 @@ public class BattleManager : MonoBehaviour
             battleBackgroundImage.color = Color.white;
         }
 
-        if (playerPortraitImage != null)
-        {
-            if (playerPortrait != null)
-                playerPortraitImage.sprite = playerPortrait;
-
-            playerPortraitImage.enabled =
-                playerPortraitImage.sprite != null;
-        }
+        ApplyBagSprite();
+        ApplyEnemyName(definition);
 
         if (definition == null)
             return;
@@ -755,6 +1019,247 @@ public class BattleManager : MonoBehaviour
         button.image.preserveAspect = true;
     }
 
+    private void ApplyEnemyName(BattleEnemyDefinition definition)
+    {
+        EnsureBattleHud();
+        if (enemyNameText == null)
+            return;
+
+        string name = definition != null &&
+            !string.IsNullOrWhiteSpace(definition.displayName)
+            ? definition.displayName
+            : enemy != null
+                ? enemy.DisplayName
+                : "Враг";
+
+        enemyNameText.text = name;
+        enemyNameText.gameObject.SetActive(true);
+    }
+
+    private void ApplyPlayerHealthBarStyle()
+    {
+        if (playerHealthSlider == null)
+            return;
+
+        if (playerHealthFill == null && playerHealthSlider.fillRect != null)
+            playerHealthFill = playerHealthSlider.fillRect.GetComponent<Image>();
+
+        playerHealthSlider.interactable = false;
+
+        if (playerHealthFill != null)
+            playerHealthFill.color = playerHealthColor;
+
+        Image background = playerHealthSlider.transform.Find("Background")
+            ?.GetComponent<Image>();
+        if (background != null)
+            background.color = new Color(0.18f, 0.05f, 0.05f, 0.9f);
+
+        if (playerHealthSlider.handleRect != null)
+            playerHealthSlider.handleRect.gameObject.SetActive(false);
+
+        if (enemyHealthSlider == null)
+            return;
+
+        enemyHealthSlider.interactable = false;
+
+        if (enemyHealthSlider.fillRect != null)
+        {
+            Image enemyFill = enemyHealthSlider.fillRect.GetComponent<Image>();
+            if (enemyFill != null)
+                enemyFill.color = playerHealthColor;
+        }
+
+        Image enemyBackground = enemyHealthSlider.transform.Find("Background")
+            ?.GetComponent<Image>();
+        if (enemyBackground != null)
+            enemyBackground.color = new Color(0.18f, 0.05f, 0.05f, 0.9f);
+
+        if (enemyHealthSlider.handleRect != null)
+            enemyHealthSlider.handleRect.gameObject.SetActive(false);
+    }
+
+    private void ApplyEndTurnBell(bool createIfMissing = true)
+    {
+        if (endTurnButton == null)
+        {
+            GameObject found = GameObject.Find("EndTurnButton");
+            if (found != null)
+                endTurnButton = found.GetComponent<Button>();
+        }
+
+        if (endTurnButton == null)
+            return;
+
+        EndTurnBellButton bell =
+            endTurnButton.GetComponent<EndTurnBellButton>();
+        if (bell == null && createIfMissing)
+            bell = endTurnButton.gameObject.AddComponent<EndTurnBellButton>();
+
+        if (bell != null)
+            bell.ApplyBellSprite(endTurnBellSprite);
+
+        Transform label = endTurnButton.transform.Find("Text (TMP)");
+        if (label != null)
+        {
+            TMP_Text text = label.GetComponent<TMP_Text>();
+            if (text != null &&
+                (endTurnBellSprite != null ||
+                 (endTurnButton.image != null &&
+                  endTurnButton.image.sprite != null &&
+                  endTurnButton.image.sprite.name != "UISprite" &&
+                  endTurnButton.image.sprite.name != "Background")))
+            {
+                text.text = "";
+            }
+        }
+    }
+
+    private void EnsureBattleHud()
+    {
+        Canvas overlay = GetHudCanvas();
+        Transform infoParent = bodyPartsPanel != null
+            ? bodyPartsPanel.transform.parent
+            : overlay != null
+                ? overlay.transform
+                : null;
+        if (infoParent == null)
+            return;
+
+        if (bodyPartInfoRoot == null || battleMessageText == null)
+        {
+            GameObject panel = new GameObject(
+                "BattleInfoPanel",
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Image));
+            panel.transform.SetParent(infoParent, false);
+            bodyPartInfoRoot = panel.GetComponent<RectTransform>();
+            bodyPartInfoRoot.anchorMin = new Vector2(0.5f, 0.5f);
+            bodyPartInfoRoot.anchorMax = new Vector2(0.5f, 0.5f);
+            bodyPartInfoRoot.pivot = new Vector2(0f, 0.5f);
+            bodyPartInfoRoot.anchoredPosition = new Vector2(260f, 40f);
+            bodyPartInfoRoot.sizeDelta = new Vector2(360f, 240f);
+
+            Image panelImage = panel.GetComponent<Image>();
+            panelImage.color = new Color(0.08f, 0.06f, 0.04f, 0.86f);
+            panelImage.raycastTarget = false;
+
+            battleMessageText = CreateHudText(
+                bodyPartInfoRoot,
+                "Text",
+                Vector2.zero,
+                Vector2.one,
+                new Vector2(0.5f, 0.5f),
+                Vector2.zero,
+                new Vector2(-28f, -28f),
+                26f,
+                TextAlignmentOptions.TopLeft);
+            battleMessageText.color = new Color(1f, 0.93f, 0.72f, 1f);
+            bodyPartInfoText = battleMessageText;
+            panel.SetActive(false);
+        }
+
+        PlaceHoverPanelRightOfEnemy();
+
+        if (bodyPartInfoRoot != null)
+            bodyPartInfoRoot.gameObject.SetActive(
+                !string.IsNullOrEmpty(hoverInfoText));
+    }
+
+    private void PlaceHoverPanelRightOfEnemy()
+    {
+        if (bodyPartInfoRoot == null)
+            return;
+
+        bodyPartInfoRoot.anchorMin = new Vector2(0.5f, 0.5f);
+        bodyPartInfoRoot.anchorMax = new Vector2(0.5f, 0.5f);
+        bodyPartInfoRoot.pivot = new Vector2(0f, 0.5f);
+        bodyPartInfoRoot.anchoredPosition = new Vector2(260f, 40f);
+        bodyPartInfoRoot.sizeDelta = new Vector2(360f, 240f);
+    }
+
+    private Canvas GetHudCanvas()
+    {
+        if (handRoot != null)
+        {
+            Canvas canvas = handRoot.GetComponentInParent<Canvas>();
+            if (canvas != null)
+                return canvas;
+        }
+
+        return FindFirstObjectByType<Canvas>();
+    }
+
+    private static TMP_Text CreateHudText(
+        Transform parent,
+        string objectName,
+        Vector2 anchorMin,
+        Vector2 anchorMax,
+        Vector2 pivot,
+        Vector2 anchoredPosition,
+        Vector2 size,
+        float fontSize,
+        TextAlignmentOptions alignment)
+    {
+        GameObject go = new GameObject(objectName, typeof(RectTransform));
+        go.transform.SetParent(parent, false);
+
+        RectTransform rect = go.GetComponent<RectTransform>();
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.pivot = pivot;
+        rect.anchoredPosition = anchoredPosition;
+        rect.sizeDelta = size;
+
+        TextMeshProUGUI text = go.AddComponent<TextMeshProUGUI>();
+        BattleUiFonts.Apply(text);
+        text.fontSize = fontSize;
+        text.alignment = alignment;
+        text.enableWordWrapping = true;
+        text.raycastTarget = false;
+        text.outlineWidth = 0.2f;
+        text.outlineColor = new Color(0f, 0f, 0f, 0.85f);
+        return text;
+    }
+
+    private void ApplyBagSprite()
+    {
+        if (bagImage == null)
+            return;
+
+        if (bagSprite != null)
+            bagImage.sprite = bagSprite;
+        else if (bagImage.sprite == null)
+            bagImage.sprite = Resources.Load<Sprite>("UI/Veshi/sack_011");
+
+        bagImage.preserveAspect = true;
+        bagImage.enabled = bagImage.sprite != null;
+        bagImage.raycastTarget = false;
+    }
+
+    private void RefreshLeftPanel()
+    {
+        EnsureBattleHud();
+        RefreshStatusText();
+        UpdateBagCountText();
+
+        bool hasHover = !string.IsNullOrEmpty(hoverInfoText);
+        if (bodyPartInfoRoot != null)
+            bodyPartInfoRoot.gameObject.SetActive(hasHover);
+
+        if (battleMessageText != null)
+            battleMessageText.text = hasHover ? hoverInfoText : "";
+    }
+
+    private void UpdateBagCountText()
+    {
+        if (bagText == null)
+            return;
+
+        int deckCount = GameState.CardDeck.Count;
+        bagText.text = $"{bag.Count}/{deckCount}";
+    }
+
     private void UpdatePlayerStatusUI()
     {
         if (playerHealthSlider != null)
@@ -767,28 +1272,16 @@ public class BattleManager : MonoBehaviour
         if (playerHealthText != null)
         {
             playerHealthText.text =
-                $"HP: {GameState.PlayerHealth}/{GameState.PlayerMaxHealth}";
+                $"{GameState.PlayerHealth}/{GameState.PlayerMaxHealth}";
         }
-
-        PlayerData playerData = GameManager.Instance != null
-            ? GameManager.Instance.playerData
-            : null;
 
         if (playerLevelText != null)
-        {
-            playerLevelText.text = playerData != null
-                ? $"LVL: {playerData.level}"
-                : "LVL: 1";
-        }
+            playerLevelText.text = GameState.PlayerLevel.ToString();
 
         if (playerMoneyText != null)
-        {
-            playerMoneyText.text = playerData != null
-                ? $"Золото: {playerData.money}"
-                : "Золото: 0";
-        }
+            playerMoneyText.text = GameState.PlayerMoney.ToString();
 
-        RefreshStatusText();
+        RefreshLeftPanel();
     }
 
     private void RefreshStatusText()
@@ -796,16 +1289,6 @@ public class BattleManager : MonoBehaviour
         if (energyText == null)
             return;
 
-        PlayerData playerData = GameManager.Instance != null
-            ? GameManager.Instance.playerData
-            : null;
-        int level = playerData != null ? playerData.level : 1;
-        int money = playerData != null ? playerData.money : 0;
-
-        energyText.text =
-            $"HP: {GameState.PlayerHealth}/{GameState.PlayerMaxHealth}\n" +
-            $"LVL: {level}\n" +
-            $"Золото: {money}\n" +
-            $"Энергия: {currentEnergy}/{maxEnergy}";
+        energyText.text = $"{currentEnergy}/{maxEnergy}";
     }
 }
